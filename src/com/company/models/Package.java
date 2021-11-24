@@ -9,6 +9,7 @@ public class Package {
     private double weight;
 
 
+
     //getters and files
     public int getPackageId() {
         return packageId;
