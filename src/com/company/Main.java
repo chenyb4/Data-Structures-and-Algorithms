@@ -23,9 +23,17 @@ public class Main {
 
         for (Package p: packages
              ) {
-            System.out.println(p.getEntryDate());
+            System.out.println(p.getPackageId());
         }
 
+        Helper.sort(packages);
+        System.out.println("After sorting packages:");
+
+
+        for (Package p: packages
+        ) {
+            System.out.println(p.getPackageId());
+        }
 
 
 

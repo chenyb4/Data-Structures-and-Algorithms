@@ -60,4 +60,43 @@ public class Helper {
             e.printStackTrace();
         }
     }
+
+
+
+    public static void sort(ArrayList<Package> packages){
+        if(packages.size() <2) return;
+        int mid =packages.size()/2;
+        ArrayList<Package> left = new ArrayList<>();
+        ArrayList<Package> right = new ArrayList<>();
+        for(int i=0; i<mid; i++){
+            left.add(packages.get(i));
+        }
+        for(int i=0; i<packages.size()-mid; i++){
+            right.add(packages.get(mid+i));
+        }
+        sort(left);
+        sort(right);
+        merge(left, right, packages);
+    }
+
+    private static void merge(ArrayList<Package> left, ArrayList<Package> right, ArrayList<Package> all){
+        int i=0, j=0, k=0;
+        while(i<left.size() && j< right.size()){
+            if(left.get(i).getPackageId() < right.get(j).getPackageId()){
+                all.set(k,left.get(i));
+                i++;
+            }else{
+                all.set(k,right.get(j));
+                j++;
+            }
+            k++;
+        }
+        while(i<left.size()){
+            all.set(k++,left.get(i++));
+        }
+        while(j<right.size()){
+            all.set(k++, right.get(j++));
+        }
+    }
+
 }
