@@ -13,6 +13,7 @@ public class Client {
     private String initials;
     private int addressX;
     private int addressY;
+    private int numberOfPackagesReceived;
 
     //getteres and setters
     public int getClientId() {
@@ -35,6 +36,10 @@ public class Client {
         return addressY;
     }
 
+    public int getNumberOfPackagesReceived() {
+        return numberOfPackagesReceived;
+    }
+
     public void setClientId(int clientId) {
         this.clientId = clientId;
     }
@@ -55,6 +60,10 @@ public class Client {
         this.addressY = addressY;
     }
 
+    public void setNumberOfPackagesReceived(int numberOfPackagesReceived) {
+        this.numberOfPackagesReceived = numberOfPackagesReceived;
+    }
+
     //constructors
     public Client(int clientId, String name, String initials, int addressX, int addressY) {
         this.clientId = clientId;
@@ -62,6 +71,7 @@ public class Client {
         this.initials = initials;
         this.addressX = addressX;
         this.addressY = addressY;
+        this.numberOfPackagesReceived=0;
     }
 
 

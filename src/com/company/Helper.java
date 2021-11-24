@@ -14,6 +14,19 @@ import java.util.Scanner;
 
 public class Helper {
 
+
+    public static Client findClientByID(ArrayList<Client> clientList, int id){
+        for (Client c:clientList
+             ) {
+            if(c.getClientId()==id){
+                return c;
+            }
+
+        }
+
+        return null;
+    }
+
     public static void readClientsFromCSV(String filePath, ArrayList<Client> list){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
@@ -21,7 +34,6 @@ public class Helper {
             while (fileReader.hasNext()){
                 String lineInFile=fileReader.nextLine();
                 String[] lineParts=lineInFile.split(";");
-
                 int clientId=Integer.parseInt(lineParts[0]);
                 String name=lineParts[1];
                 String initials=lineParts[2];
@@ -38,7 +50,7 @@ public class Helper {
     }
 
 
-    public static void readPackagesFromCSV(String filePath,ArrayList<Package> list){
+    public static void readPackagesFromCSV(String filePath,ArrayList<Package> list, ArrayList<Client> clientList){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -46,6 +58,7 @@ public class Helper {
                 String lineInFile=fileReader.nextLine();
                 String[] lineParts=lineInFile.split(";");
                 int clientId = Integer.parseInt(lineParts[6]);
+                Client client=findClientByID(clientList,clientId);
                 int height = Integer.parseInt(lineParts[3]);
                 int breadth = Integer.parseInt(lineParts[2]);
                 int length = Integer.parseInt(lineParts[1]);
@@ -53,7 +66,7 @@ public class Helper {
                 double weight = Double.parseDouble(lineParts[4]);
                 //Not sure about this
                 Date entryDate = new SimpleDateFormat("dd-MM-yyyy").parse(lineParts[5]);
-                list.add(new Package(packageId,length,breadth,height,clientId,entryDate,weight));
+                list.add(new Package(packageId,length,breadth,height,client,entryDate,weight));
             }
             fileReader.close();
         } catch (FileNotFoundException|ParseException e) {
@@ -62,8 +75,8 @@ public class Helper {
     }
 
 
-
-    public static void sort(ArrayList<Package> packages){
+//merge sort
+    public static void mergeSort(ArrayList<Package> packages){
         if(packages.size() <2) return;
         int mid =packages.size()/2;
         ArrayList<Package> left = new ArrayList<>();
@@ -74,8 +87,8 @@ public class Helper {
         for(int i=0; i<packages.size()-mid; i++){
             right.add(packages.get(mid+i));
         }
-        sort(left);
-        sort(right);
+        mergeSort(left);
+        mergeSort(right);
         merge(left, right, packages);
     }
 
@@ -98,5 +111,22 @@ public class Helper {
             all.set(k++, right.get(j++));
         }
     }
+
+
+    //selection sort
+    /*index = 0
+            while (index < seqLength)
+    search for smallest element in sequence between index and seqLength
+    swap smallest element with element at index
+            index = index + 1*/
+
+    /*public static void selectionSort(ArrayList<Client> list){
+        int index=0;
+        for (int i = 0; i < list.size(); i++) {
+            if()
+        }
+
+    }*/
+
 
 }

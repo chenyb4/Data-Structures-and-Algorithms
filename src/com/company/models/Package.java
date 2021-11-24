@@ -1,16 +1,20 @@
 package com.company.models;
 
+import com.company.StatusType;
+
 import java.util.Date;
 
 public class Package {
 
-    private int packageId, length, breadth,height,clientId;
+    private int packageId, length, breadth,height;
     private Date entryDate;
     private double weight;
+    private StatusType status;
+    private Client client;
 
 
 
-    //getters and files
+    //getters and setters
     public int getPackageId() {
         return packageId;
     }
@@ -27,8 +31,8 @@ public class Package {
         return height;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
     public Date getEntryDate() {
@@ -37,6 +41,10 @@ public class Package {
 
     public double getWeight() {
         return weight;
+    }
+
+    public StatusType getStatus() {
+        return status;
     }
 
     public void setPackageId(int packageId) {
@@ -55,8 +63,8 @@ public class Package {
         this.height = height;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public void setEntryDate(Date entryDate) {
@@ -67,16 +75,22 @@ public class Package {
         this.weight = weight;
     }
 
+    public void setStatus(StatusType status) {
+        this.status = status;
+    }
+
+
 
     //construcors
 
-    public Package(int packageId, int length, int breadth, int height, int clientId, Date entryDate, double weight) {
+    public Package(int packageId, int length, int breadth, int height, Client client, Date entryDate, double weight) {
         this.packageId = packageId;
         this.length = length;
         this.breadth = breadth;
         this.height = height;
-        this.clientId = clientId;
+        this.client = client;
         this.entryDate = entryDate;
         this.weight = weight;
+        this.status=StatusType.InDistributionCenter;
     }
 }
