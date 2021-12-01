@@ -4,7 +4,7 @@ import com.company.StatusType;
 
 import java.util.Date;
 
-public class Package {
+public class Package implements Comparable<Package>{
 
     private int packageId, length, breadth,height;
     private Date entryDate;
@@ -12,7 +12,10 @@ public class Package {
     private StatusType status;
     private Client client;
 
-
+    @Override
+    public int compareTo(Package o) {
+        return 0;
+    }
 
     //getters and setters
     public int getPackageId() {
