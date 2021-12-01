@@ -3,6 +3,7 @@ package com.company.models;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Client {
@@ -74,6 +75,24 @@ public class Client {
         this.numberOfPackagesReceived=0;
     }
 
+
+
+
+
+
+
+    //static methods
+    public static Client findClientByID(LinkedList<Client> clientList, int id){
+        for (Client c:clientList
+        ) {
+            if(c.getClientId()==id){
+                return c;
+            }
+
+        }
+
+        return null;
+    }
 
 
 
