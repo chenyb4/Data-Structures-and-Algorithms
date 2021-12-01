@@ -113,20 +113,20 @@ public class Helper {
     }
 
 
-    //selection sort
-    /*index = 0
-            while (index < seqLength)
-    search for smallest element in sequence between index and seqLength
-    swap smallest element with element at index
-            index = index + 1*/
+//selection sort
+   public static void selectionSort(ArrayList<Client> clientList,int threshold) {
+       for (int i = 0; i < threshold; i++) {
+           int min_idx = i;
+           for (int j = i + 1; j < clientList.size(); j++) {
+               if (clientList.get(j).getNumberOfPackagesReceived() >= clientList.get(min_idx).getNumberOfPackagesReceived()) {
+                   min_idx = j;
+               }
+           }
+           Client temp = clientList.get(min_idx);
+           clientList.set(min_idx, clientList.get(i));
+           clientList.set(i, temp);
 
-    /*public static void selectionSort(ArrayList<Client> list){
-        int index=0;
-        for (int i = 0; i < list.size(); i++) {
-            if()
-        }
+       }
 
-    }*/
-
-
+   }
 }
