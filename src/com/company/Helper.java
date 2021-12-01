@@ -9,13 +9,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 
 public class Helper {
 
 
-    public static Client findClientByID(ArrayList<Client> clientList, int id){
+    public static Client findClientByID(LinkedList<Client> clientList, int id){
         for (Client c:clientList
              ) {
             if(c.getClientId()==id){
@@ -27,7 +28,7 @@ public class Helper {
         return null;
     }
 
-    public static void readClientsFromCSV(String filePath, ArrayList<Client> list){
+    public static void readClientsFromCSV(String filePath, LinkedList<Client> list){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -50,7 +51,7 @@ public class Helper {
     }
 
 
-    public static void readPackagesFromCSV(String filePath,ArrayList<Package> list, ArrayList<Client> clientList){
+    public static void readPackagesFromCSV(String filePath,LinkedList<Package> list, LinkedList<Client> clientList){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -76,11 +77,11 @@ public class Helper {
 
 
 //merge sort
-    public static void mergeSort(ArrayList<Package> packages){
+    public static void mergeSort(LinkedList<Package> packages){
         if(packages.size() <2) return;
         int mid =packages.size()/2;
-        ArrayList<Package> left = new ArrayList<>();
-        ArrayList<Package> right = new ArrayList<>();
+        LinkedList<Package> left = new LinkedList<>();
+        LinkedList<Package> right = new LinkedList<>();
         for(int i=0; i<mid; i++){
             left.add(packages.get(i));
         }
@@ -92,7 +93,7 @@ public class Helper {
         merge(left, right, packages);
     }
 
-    private static void merge(ArrayList<Package> left, ArrayList<Package> right, ArrayList<Package> all){
+    private static void merge(LinkedList<Package> left, LinkedList<Package> right, LinkedList<Package> all){
         int i=0, j=0, k=0;
         while(i<left.size() && j< right.size()){
             if(left.get(i).getPackageId() < right.get(j).getPackageId()){
@@ -114,7 +115,7 @@ public class Helper {
 
 
 //selection sort
-   public static void selectionSort(ArrayList<Client> clientList,int threshold) {
+   public static void selectionSort(LinkedList<Client> clientList,int threshold) {
        for (int i = 0; i < threshold; i++) {
            int min_idx = i;
            for (int j = i + 1; j < clientList.size(); j++) {

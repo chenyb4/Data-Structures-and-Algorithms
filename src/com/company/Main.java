@@ -4,14 +4,15 @@ import com.company.models.Client;
 import com.company.models.Package;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Client> clients = new ArrayList<>();
-        ArrayList<Package> packages = new ArrayList<Package>();
+        LinkedList<Client> clients = new LinkedList<>();
+        LinkedList<Package> packages = new LinkedList<Package>();
 
 
         Helper.readClientsFromCSV("src/com/company/csvFiles/Clients.csv",clients);
