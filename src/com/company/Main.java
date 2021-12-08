@@ -1,14 +1,17 @@
 package com.company;
 
 import com.company.algorithms.Search;
+import com.company.datastructures.AVLTree;
+import com.company.datastructures.Node;
 import com.company.models.Client;
 import com.company.models.Package;
 
+import java.text.ParseException;
 import java.util.LinkedList;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         LinkedList<Client> clients = new LinkedList<>();
         LinkedList<Package> packages = new LinkedList<Package>();
@@ -18,25 +21,40 @@ public class Main {
         Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
 
         //try binary search
-        Client temp= Search.binarySearchClients(clients,235027);
+        /*Client temp= Search.binarySearchClients(clients,235027);
 
 
         Client temp2=Search.binarySearchClients(clients,888888888);
 
         System.out.println(temp.getName());
 
-        System.out.println(temp2.getName());
+        System.out.println(temp2.getName());*/
+
 
         //get the number of packages sent to each client
-     /*   for (Package p:packages
+       for (Package p:packages
         ) {
-            for (int i = 0 ; i < clients.size(); i++) {
+           System.out.println(p.getEstimatedDeliveryDate());
+
+           /* for (int i = 0 ; i < clients.size(); i++) {
                 if(p.getClient().getClientId()==clients.get(i).getClientId()){
                     clients.get(i).setNumberOfPackagesReceived(clients.get(i).getNumberOfPackagesReceived()+1);
                 }
-            }
+            }*/
         }
 
+       AVLTree tree=new AVLTree();
+        for (Package p: packages
+             ) {
+            tree.root=tree.insert(tree.root,p);
+        }
+
+        System.out.println("Preorder traversal" +
+                " of constructed tree is : ");
+        tree.preOrder(tree.root);
+
+
+/*
         //sort on number of packages sent to each client
 
         for (Client c: clients
@@ -64,7 +82,12 @@ public class Main {
 
 
 
+
     }
+
+
+
+
 
 
 

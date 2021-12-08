@@ -11,13 +11,25 @@ public class Package implements Comparable<Package>{
     private double weight;
     private StatusType status;
     private Client client;
+    private Date estimatedDeliveryDate;
 
+    //myself bigger positive, myself smaller negative,
     @Override
     public int compareTo(Package p) {
         return Integer.compare(id,p.id);
     }
 
     //getters and setters
+
+
+    public Date getEstimatedDeliveryDate() {
+        return estimatedDeliveryDate;
+    }
+
+    public void setEstimatedDeliveryDate(Date estimatedDeliveryDate) {
+        this.estimatedDeliveryDate = estimatedDeliveryDate;
+    }
+
     public int getId() {
         return id;
     }
