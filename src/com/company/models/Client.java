@@ -1,15 +1,11 @@
 package com.company.models;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Client {
 
     //fields
-    private int clientId;
+    private int id;
     private String name;
     private String initials;
     private int addressX;
@@ -17,8 +13,8 @@ public class Client {
     private int numberOfPackagesReceived;
 
     //getteres and setters
-    public int getClientId() {
-        return clientId;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -41,9 +37,9 @@ public class Client {
         return numberOfPackagesReceived;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
+   /* public void setId(int id) {
+        this.id = id;
+    }*/
 
     public void setName(String name) {
         this.name = name;
@@ -67,7 +63,7 @@ public class Client {
 
     //constructors
     public Client(int clientId, String name, String initials, int addressX, int addressY) {
-        this.clientId = clientId;
+        this.id = clientId;
         this.name = name;
         this.initials = initials;
         this.addressX = addressX;
@@ -85,7 +81,7 @@ public class Client {
     public static Client findClientByID(LinkedList<Client> clientList, int id){
         for (Client c:clientList
         ) {
-            if(c.getClientId()==id){
+            if(c.getId()==id){
                 return c;
             }
 

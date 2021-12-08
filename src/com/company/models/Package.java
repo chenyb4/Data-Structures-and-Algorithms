@@ -6,20 +6,20 @@ import java.util.Date;
 
 public class Package implements Comparable<Package>{
 
-    private int packageId, length, breadth,height;
+    private int id, length, breadth,height;
     private Date entryDate;
     private double weight;
     private StatusType status;
     private Client client;
 
     @Override
-    public int compareTo(Package o) {
-        return 0;
+    public int compareTo(Package p) {
+        return Integer.compare(id,p.id);
     }
 
     //getters and setters
-    public int getPackageId() {
-        return packageId;
+    public int getId() {
+        return id;
     }
 
     public int getLength() {
@@ -50,9 +50,9 @@ public class Package implements Comparable<Package>{
         return status;
     }
 
-    public void setPackageId(int packageId) {
-        this.packageId = packageId;
-    }
+    /*public void setId(int packageId) {
+        this.id = packageId;
+    }*/
 
     public void setLength(int length) {
         this.length = length;
@@ -87,7 +87,7 @@ public class Package implements Comparable<Package>{
     //construcors
 
     public Package(int packageId, int length, int breadth, int height, Client client, Date entryDate, double weight) {
-        this.packageId = packageId;
+        this.id = packageId;
         this.length = length;
         this.breadth = breadth;
         this.height = height;
