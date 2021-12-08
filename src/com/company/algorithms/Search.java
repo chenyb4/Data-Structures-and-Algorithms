@@ -12,16 +12,16 @@ public class Search {
         int right=clients.size()-1;
         int middle=(left+right)/2;
 
-        while ((clients.get(middle).getClientId()!=clientId)&&(left<right)){
-            if(clients.get(middle).getClientId()<clientId){
+        while ((clients.get(middle).getId()!=clientId)&&(left<right)){
+            if(clients.get(middle).getId()<clientId){
                 left=middle+1;
-            }else if(clients.get(middle).getClientId()>clientId){
+            }else if(clients.get(middle).getId()>clientId){
                 right=middle-1;
             }
             middle=(left+right)/2;
         }
 
-        if(clients.get(middle).getClientId()==clientId){
+        if(clients.get(middle).getId()==clientId){
             return clients.get(middle);
         }else{
             return null;

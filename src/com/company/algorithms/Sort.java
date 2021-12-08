@@ -26,7 +26,7 @@ public class Sort {
     private static void merge(LinkedList<Package> left, LinkedList<Package> right, LinkedList<Package> all){
         int i=0, j=0, k=0;
         while(i<left.size() && j< right.size()){
-            if(left.get(i).getPackageId() < right.get(j).getPackageId()){
+            if(left.get(i).getId() < right.get(j).getId()){
                 all.set(k,left.get(i));
                 i++;
             }else{

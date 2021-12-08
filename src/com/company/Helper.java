@@ -38,9 +38,12 @@ public class Helper {
 
     public static void readPackagesFromCSV(String filePath,LinkedList<Package> list, LinkedList<Client> clientList){
         try {
+
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
             while (fileReader.hasNext()){
+                Calendar c=Calendar.getInstance();
+
                 String lineInFile=fileReader.nextLine();
                 String[] lineParts=lineInFile.split(";");
                 int clientId = Integer.parseInt(lineParts[6]);
@@ -56,6 +59,10 @@ public class Helper {
                 Random rand=new Random();
 
                 tempPackage.setStatus(StatusType.values()[rand.nextInt(3)]);
+                c.setTime(entryDate);
+                c.add(Calendar.DAY_OF_MONTH,rand.nextInt(8-3)+3);
+                tempPackage.setEstimatedDeliveryDate(c.getTime());
+
                 list.add(tempPackage);
             }
             fileReader.close();

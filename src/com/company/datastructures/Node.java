@@ -1,30 +1,19 @@
 package com.company.datastructures;
 
-import com.company.models.Client;
+import com.company.models.Package;
 
 import java.util.ArrayList;
 
 public class Node {
-    /*int keyDay;
-    Node left,right;
-    ArrayList<Package> packageArrayList = new ArrayList<>();
 
-    public Node() {
+    public Package key;
+    int height;
+    public Node left;
+    public Node right;
+
+    public Node(Package key) {
+        this.key = key;
     }
-
-    public void addPackage(Package package) {
-        if(keyDay=null){
-            keyDay=package.getDay();
-            packageArrayList.add(package);
-        }else if (keyDay==package.getDay()){
-            packageArrayList.add()
-        }
-        if package.getday < keyDay then
-        left.addPackage();
-
-        right=null;
-    }
-*/
 
 
 }
