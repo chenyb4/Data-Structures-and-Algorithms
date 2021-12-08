@@ -7,10 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Helper {
@@ -55,7 +52,11 @@ public class Helper {
                 double weight = Double.parseDouble(lineParts[4]);
                 //Not sure about this
                 Date entryDate = new SimpleDateFormat("dd-MM-yyyy").parse(lineParts[5]);
-                list.add(new Package(packageId,length,breadth,height,client,entryDate,weight));
+                Package tempPackage=new Package(packageId,length,breadth,height,client,entryDate,weight);
+                Random rand=new Random();
+
+                tempPackage.setStatus(StatusType.values()[rand.nextInt(3)]);
+                list.add(tempPackage);
             }
             fileReader.close();
         } catch (FileNotFoundException|ParseException e) {
