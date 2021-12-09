@@ -10,15 +10,15 @@ import java.util.Date;
 public class AVLTree {
     public Node root;
 
-    void updateHeight(Node n){
+    private void updateHeight(Node n){
         n.height = 1 + Math.max(height(n.left), height(n.right));
     }
 
-    int height(Node n){
+    private int height(Node n){
         return n==null?-1:n.height;
     }
 
-    int getBalance(Node n){
+    private int getBalance(Node n){
         return (n == null) ? 0 : height(n.right) - height(n.left);
     }
 
@@ -27,7 +27,7 @@ public class AVLTree {
      * @param y
      * @return
      */
-    Node rotateRight(Node y) {
+    private Node rotateRight(Node y) {
         Node x = y.left;
         Node z = x.right;
         x.right = y;
@@ -42,7 +42,7 @@ public class AVLTree {
      * @param y
      * @return
      */
-    Node rotateLeft(Node y){
+   private Node rotateLeft(Node y){
         Node x=y.right;
         Node z=x.left;
         x.left=y;
@@ -57,7 +57,7 @@ public class AVLTree {
      * @param z
      * @return
      */
-    Node rebalance(Node z) {
+    private Node rebalance(Node z) {
         updateHeight(z);
         int balance = getBalance(z);
         if (balance > 1) {
@@ -76,6 +76,15 @@ public class AVLTree {
             }
         }
         return z;
+    }
+
+    private Node mostLeftChild(Node node) {
+        Node current = node;
+        /* loop down to find the leftmost leaf */
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current;
     }
 
 
@@ -106,8 +115,7 @@ public class AVLTree {
      * @param key the key to be deleted
      * @return
      */
-    /*
-    Node delete(Node node, Package key) {
+    public Node delete(Node node, Package key) {
         if (node == null) {
             return node;
         } else if (node.key.compareTo(key)>0) {
@@ -127,7 +135,19 @@ public class AVLTree {
             node = rebalance(node);
         }
         return node;
-    }*/
+    }
+
+
+    public Node find(Package key) {
+        Node current = root;
+        while (current != null) {
+            if (current.key == key) {
+                break;
+            }//current.key < key
+            current = current.key.compareTo(key)<0 ? current.right : current.left;
+        }
+        return current;
+    }
 
 
     //only for testing. this method does not adhere to OOP convention and standards
