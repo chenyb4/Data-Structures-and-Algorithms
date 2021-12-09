@@ -49,6 +49,11 @@ public class Main {
             tree.root=tree.insert(tree.root,p);
         }
 
+        tree.delete(tree.root,packages.get(5));
+
+        Node nodeToFind= tree.find(packages.get(4));
+        System.out.println(nodeToFind.key.getId()+" is the node found");
+
         System.out.println("Preorder traversal" +
                 " of constructed tree is : ");
         tree.preOrder(tree.root);
