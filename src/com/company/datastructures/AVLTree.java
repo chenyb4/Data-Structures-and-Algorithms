@@ -1,11 +1,8 @@
 package com.company.datastructures;
 
-import com.company.models.Client;
 import com.company.models.Package;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AVLTree {
     public Node root;
@@ -27,6 +24,7 @@ public class AVLTree {
      * @param y
      * @return
      */
+
     private Node rotateRight(Node y) {
         Node x = y.left;
         Node z = x.right;
@@ -42,6 +40,7 @@ public class AVLTree {
      * @param y
      * @return
      */
+
    private Node rotateLeft(Node y){
         Node x=y.right;
         Node z=x.left;
@@ -57,7 +56,8 @@ public class AVLTree {
      * @param z
      * @return
      */
-    private Node rebalance(Node z) {
+
+    private Node reBalance(Node z) {
         updateHeight(z);
         int balance = getBalance(z);
         if (balance > 1) {
@@ -105,7 +105,7 @@ public class AVLTree {
         } else {
             throw new RuntimeException("duplicate Key!");
         }
-        return rebalance(node);
+        return reBalance(node);
     }
 
 
@@ -132,7 +132,7 @@ public class AVLTree {
             }
         }
         if (node != null) {
-            node = rebalance(node);
+            node = reBalance(node);
         }
         return node;
     }

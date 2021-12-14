@@ -20,9 +20,12 @@ public class Main {
         Helper.readClientsFromCSV("src/com/company/csvFiles/Clients.csv",clients);
         Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
 
+
         //try binary search
         /*Client temp= Search.binarySearchClients(clients,235027);
 
+        Search<Client> search = new Search<Client>();
+        System.out.println(search.binarySearch(clients,new Client(235050,null,null,0,0)).getName());
 
         Client temp2=Search.binarySearchClients(clients,888888888);
 
@@ -32,15 +35,15 @@ public class Main {
 
 
         //get the number of packages sent to each client
-       for (Package p:packages
+       /*for (Package p:packages
         ) {
            System.out.println(p.getEstimatedDeliveryDate());
 
-           /* for (int i = 0 ; i < clients.size(); i++) {
+           *//* for (int i = 0 ; i < clients.size(); i++) {
                 if(p.getClient().getClientId()==clients.get(i).getClientId()){
                     clients.get(i).setNumberOfPackagesReceived(clients.get(i).getNumberOfPackagesReceived()+1);
                 }
-            }*/
+            }*//*
         }
 
        AVLTree tree=new AVLTree();
@@ -56,7 +59,7 @@ public class Main {
 
         System.out.println("Preorder traversal" +
                 " of constructed tree is : ");
-        tree.preOrder(tree.root);
+        tree.preOrder(tree.root);*/
 
 
 /*
