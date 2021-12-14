@@ -6,6 +6,7 @@ import com.company.models.Package;
 import java.util.LinkedList;
 
 public class Sort {
+
     //merge sort
     public static void mergeSort(LinkedList<Package> packages){
         if(packages.size() <2) return;
@@ -22,7 +23,8 @@ public class Sort {
         mergeSort(right);
         merge(left, right, packages);
     }
-// part of the merge sort for recursion
+
+    // part of the merge sort for recursion
     private static void merge(LinkedList<Package> left, LinkedList<Package> right, LinkedList<Package> all){
         int i=0, j=0, k=0;
         while(i<left.size() && j< right.size()){
@@ -43,7 +45,6 @@ public class Sort {
         }
     }
 
-
     //selection sort
     public static void selectionSort(LinkedList<Client> clientList, int threshold) {
         for (int i = 0; i < threshold; i++) {
@@ -56,9 +57,6 @@ public class Sort {
             Client temp = clientList.get(min_idx);
             clientList.set(min_idx, clientList.get(i));
             clientList.set(i, temp);
-
         }
-
     }
-
 }

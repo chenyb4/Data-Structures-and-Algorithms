@@ -13,15 +13,19 @@ public class Package implements Comparable<Package>{
     private Client client;
     private Date estimatedDeliveryDate;
 
-    //myself bigger positive, myself smaller negative,
-    @Override
-    public int compareTo(Package p) {
-        return Integer.compare(id,p.id);
+    //constructor
+    public Package(int packageId, int length, int breadth, int height, Client client, Date entryDate, double weight) {
+        this.id = packageId;
+        this.length = length;
+        this.breadth = breadth;
+        this.height = height;
+        this.client = client;
+        this.entryDate = entryDate;
+        this.weight = weight;
+        this.status=StatusType.InDistributionCenter;
     }
 
     //getters and setters
-
-
     public Date getEstimatedDeliveryDate() {
         return estimatedDeliveryDate;
     }
@@ -94,18 +98,9 @@ public class Package implements Comparable<Package>{
         this.status = status;
     }
 
-
-
-    //construcors
-
-    public Package(int packageId, int length, int breadth, int height, Client client, Date entryDate, double weight) {
-        this.id = packageId;
-        this.length = length;
-        this.breadth = breadth;
-        this.height = height;
-        this.client = client;
-        this.entryDate = entryDate;
-        this.weight = weight;
-        this.status=StatusType.InDistributionCenter;
+    //myself bigger positive, myself smaller negative,
+    @Override
+    public int compareTo(Package p) {
+        return Integer.compare(id,p.id);
     }
 }
