@@ -1,13 +1,13 @@
 package com.company.datastructures;
 
 import com.company.models.Client;
-import com.company.models.Package;
+//import com.company.models.T;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AVLTree {
+public class AVLTree <T extends Comparable<T>>{
     public Node root;
 
     private void updateHeight(Node n){
@@ -95,7 +95,7 @@ public class AVLTree {
      * @return
      * @throws ParseException
      */
-    public Node insert(Node node, Package key) throws ParseException {
+    public Node insert(Node node, T key) throws ParseException {
         if (node == null) {
             return new Node(key);
         } else if (node.key.compareTo(key)>0) {
@@ -115,7 +115,7 @@ public class AVLTree {
      * @param key the key to be deleted
      * @return
      */
-    public Node delete(Node node, Package key) {
+    public Node delete(Node node, T key) {
         if (node == null) {
             return node;
         } else if (node.key.compareTo(key)>0) {
@@ -128,7 +128,7 @@ public class AVLTree {
             } else {
                 Node mostLeftChild = mostLeftChild(node.right);
                 node.key = mostLeftChild.key;
-                node.right = delete(node.right, node.key);
+                node.right = delete(node.right, (T) node.key);
             }
         }
         if (node != null) {
@@ -138,7 +138,7 @@ public class AVLTree {
     }
 
 
-    public Node find(Package key) {
+    public Node find(T key) {
         Node current = root;
         while (current != null) {
             if (current.key == key) {
@@ -153,7 +153,7 @@ public class AVLTree {
     //only for testing. this method does not adhere to OOP convention and standards
     public void preOrder(Node node) {
         if (node != null) {
-            System.out.print(node.key.getId() + " ");
+            System.out.print(node.key + " ");
             preOrder(node.left);
             preOrder(node.right);
         }

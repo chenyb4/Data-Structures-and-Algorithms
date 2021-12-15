@@ -42,7 +42,6 @@ public class Helper {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
             while (fileReader.hasNext()){
-                Calendar c=Calendar.getInstance();
 
                 String lineInFile=fileReader.nextLine();
                 String[] lineParts=lineInFile.split(";");
@@ -56,13 +55,6 @@ public class Helper {
                 //Not sure about this
                 Date entryDate = new SimpleDateFormat("dd-MM-yyyy").parse(lineParts[5]);
                 Package tempPackage=new Package(packageId,length,breadth,height,client,entryDate,weight);
-                Random rand=new Random();
-
-                tempPackage.setStatus(StatusType.values()[rand.nextInt(3)]);
-                c.setTime(entryDate);
-                c.add(Calendar.DAY_OF_MONTH,rand.nextInt(8-3)+3);
-                tempPackage.setEstimatedDeliveryDate(c.getTime());
-
                 list.add(tempPackage);
             }
             fileReader.close();

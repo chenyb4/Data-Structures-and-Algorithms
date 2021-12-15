@@ -58,7 +58,6 @@ public class Sort {
             clientList.set(i, temp);
 
         }
-
     }
 
 }

@@ -4,14 +4,15 @@ import com.company.models.Package;
 
 import java.util.ArrayList;
 
-public class Node {
+public class Node <T extends Comparable<T>>{
 
-    public Package key;
+
+    public T key;
     int height;
     public Node left;
     public Node right;
 
-    public Node(Package key) {
+    public Node(T key) {
         this.key = key;
     }
 
