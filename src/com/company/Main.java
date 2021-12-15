@@ -37,15 +37,22 @@ public class Main {
         //get the number of packages sent to each client
        /*for (Package p:packages
         ) {
-           System.out.println(p.getEstimatedDeliveryDate());
+           System.out.println(p.getEntryDate());
 
            *//* for (int i = 0 ; i < clients.size(); i++) {
                 if(p.getClient().getClientId()==clients.get(i).getClientId()){
                     clients.get(i).setNumberOfPackagesReceived(clients.get(i).getNumberOfPackagesReceived()+1);
                 }
             }*//*
-        }
 
+            for (int i = 0 ; i < clients.size(); i++) {
+                if(p.getClient().getId()==clients.get(i).getId()){
+                    clients.get(i).setNumberOfPackagesReceived(clients.get(i).getNumberOfPackagesReceived()+1);
+                }
+            }
+
+        }
+       
        AVLTree tree=new AVLTree();
         for (Package p: packages
              ) {
@@ -55,14 +62,12 @@ public class Main {
         tree.delete(tree.root,packages.get(5));
 
         Node nodeToFind= tree.find(packages.get(4));
-        System.out.println(nodeToFind.key.getId()+" is the node found");
+       // System.out.println(nodeToFind.key.getId()+" is the node found");
 
         System.out.println("Preorder traversal" +
                 " of constructed tree is : ");
+
         tree.preOrder(tree.root);*/
-
-
-/*
         //sort on number of packages sent to each client
 
         for (Client c: clients
@@ -70,8 +75,9 @@ public class Main {
             System.out.println(c.getName()+" : "+c.getNumberOfPackagesReceived());
         }
 
-*/
         /*
+
+
 
         for (Package p: packages
              ) {
@@ -87,16 +93,6 @@ public class Main {
             System.out.println(p.getPackageId());
         }*/
 
-
-
-
-
     }
-
-
-
-
-
-
 
 }

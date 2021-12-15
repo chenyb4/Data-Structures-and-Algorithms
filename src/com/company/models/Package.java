@@ -11,7 +11,7 @@ public class Package implements Comparable<Package>{
     private double weight;
     private StatusType status;
     private Client client;
-    private Date estimatedDeliveryDate;
+
 
     //constructor
     public Package(int packageId, int length, int breadth, int height, Client client, Date entryDate, double weight) {
@@ -25,14 +25,15 @@ public class Package implements Comparable<Package>{
         this.status=StatusType.InDistributionCenter;
     }
 
+
     //getters and setters
-    public Date getEstimatedDeliveryDate() {
-        return estimatedDeliveryDate;
+    @Override
+    public String toString() {
+        return  id + "";
+
     }
 
-    public void setEstimatedDeliveryDate(Date estimatedDeliveryDate) {
-        this.estimatedDeliveryDate = estimatedDeliveryDate;
-    }
+    //getters and setters
 
     public int getId() {
         return id;
