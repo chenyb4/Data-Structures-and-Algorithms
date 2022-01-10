@@ -68,10 +68,14 @@ public class Main {
         Node nodeToFind= tree.find(packages.get(4));
        // System.out.println(nodeToFind.key.getId()+" is the node found");
 
-        System.out.println("Preorder traversal" +
+        /*System.out.println("Preorder traversal" +
                 " of constructed tree is : ");
 
-        tree.preOrder(tree.root);
+        tree.preOrder(tree.root);*/
+
+
+        System.out.println("Inorder traversal of the constructed tree is:");
+        tree.inOrder(tree.root);
 
         /*
         //sort on number of packages sent to each client
