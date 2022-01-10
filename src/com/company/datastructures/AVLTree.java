@@ -208,9 +208,19 @@ public class AVLTree <T extends Comparable<T>>{
      */
     public void preOrder(Node node) {
         if (node != null) {
-            System.out.print(node.key + " ");
+            System.out.println(node.key + " ");
             preOrder(node.left);
             preOrder(node.right);
+        }
+    }
+
+
+    public void inOrder(Node node){
+        if(node!=null){
+            inOrder(node.left);
+            System.out.println(node.key+" ");
+            inOrder(node.right);
+
         }
     }
 
