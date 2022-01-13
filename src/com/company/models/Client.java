@@ -22,7 +22,18 @@ public class Client implements Comparable<Client>{
         this.numberOfPackagesReceived=0;
     }
 
-    //getters and setters
+    //static methods
+    public static Client findClientByID(LinkedList<Client> clientList, int id){
+        for (Client c:clientList
+        ) {
+            if(c.getId()==id){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    //Getters and Setters
     public int getId() {
         return id;
     }
@@ -65,17 +76,6 @@ public class Client implements Comparable<Client>{
 
     public void setNumberOfPackagesReceived(int numberOfPackagesReceived) {
         this.numberOfPackagesReceived = numberOfPackagesReceived;
-    }
-
-    //static methods
-    public static Client findClientByID(LinkedList<Client> clientList, int id){
-        for (Client c:clientList
-        ) {
-            if(c.getId()==id){
-                return c;
-            }
-        }
-        return null;
     }
 
     @Override

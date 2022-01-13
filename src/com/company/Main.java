@@ -5,7 +5,6 @@ import com.company.datastructures.AVLTree;
 import com.company.datastructures.Node;
 import com.company.models.Client;
 import com.company.models.Package;
-
 import java.text.ParseException;
 import java.util.LinkedList;
 
