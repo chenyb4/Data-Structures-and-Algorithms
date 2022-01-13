@@ -12,7 +12,6 @@ public class Package implements Comparable<Package>{
     private StatusType status;
     private Client client;
 
-
     //constructor
     public Package(int packageId, int length, int breadth, int height, Client client, Date entryDate, double weight) {
         this.id = packageId;
@@ -25,16 +24,7 @@ public class Package implements Comparable<Package>{
         this.status=StatusType.InDistributionCenter;
     }
 
-
-    //getters and setters
-    @Override
-    public String toString() {
-        return  id + "";
-
-    }
-
-    //getters and setters
-
+    //Getters and Setters
     public int getId() {
         return id;
     }
@@ -67,10 +57,6 @@ public class Package implements Comparable<Package>{
         return status;
     }
 
-    /*public void setId(int packageId) {
-        this.id = packageId;
-    }*/
-
     public void setLength(int length) {
         this.length = length;
     }
@@ -99,9 +85,13 @@ public class Package implements Comparable<Package>{
         this.status = status;
     }
 
-    //myself bigger positive, myself smaller negative,
     @Override
     public int compareTo(Package p) {
         return Integer.compare(id,p.id);
+    }
+
+    @Override
+    public String toString() {
+        return  id + "";
     }
 }

@@ -14,6 +14,4 @@ public class Node <T extends Comparable<T>>{
     public Node(T key) {
         this.key = key;
     }
-
-
 }

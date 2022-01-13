@@ -10,6 +10,7 @@ public class AVLTree <T extends Comparable<T>>{
      *  to update the height of a node
      * @param node the node of which the height needs to be updated
      */
+
     private void updateHeight(Node node){
         node.height = 1 + Math.max(height(node.left), height(node.right));
     }
@@ -19,6 +20,7 @@ public class AVLTree <T extends Comparable<T>>{
      * @param node the node of which we want to get the height
      * @return the height of the node
      */
+
     private int height(Node node){
         if(node==null){
             return -1;
@@ -32,6 +34,7 @@ public class AVLTree <T extends Comparable<T>>{
      * @param node the node
      * @return the balance factor of the node
      */
+
     private int getBalanceFactor(Node node){
         if(node==null){
             return 0;
@@ -46,6 +49,7 @@ public class AVLTree <T extends Comparable<T>>{
      * @param unbalancedNode the node that has a balance factor bigger than 1 or smaller than -1
      * @return the left child of the unbalanced node before rotation, which becomes the root of the branch after rotation
      */
+
     private Node rotateRight(Node unbalancedNode) {
         Node leftChildOfUnbalancedNode = unbalancedNode.left;
         Node rightChildOfLeftChildOfUnbalancedNode = leftChildOfUnbalancedNode.right;
@@ -56,14 +60,14 @@ public class AVLTree <T extends Comparable<T>>{
         return leftChildOfUnbalancedNode;
     }
 
-
     /**
      * to perform a left rotation. The right child of the unbalanced node before rotation
      *  becomes the root of the branch after rotation
      * @param unbalancedNode the node that has a balance factor bigger than 1 or smaller than -1
      * @return the right child of the unbalanced node before rotation, which becomes the root of the branch after rotation
      */
-   private Node rotateLeft(Node unbalancedNode){
+
+    private Node rotateLeft(Node unbalancedNode){
         Node rightChildOfUnbalancedNode=unbalancedNode.right;
         Node leftChildOfRightChildOfUnbalancedNode=rightChildOfUnbalancedNode.left;
         rightChildOfUnbalancedNode.left=unbalancedNode;
@@ -78,6 +82,7 @@ public class AVLTree <T extends Comparable<T>>{
      * @param nodeToBalance the node that is unbalanced and need to balance after insertion or deletion
      * @return the unbalanced node after balancing it
      */
+
     private Node balance(Node nodeToBalance) {
         updateHeight(nodeToBalance);
         int balanceFactor = getBalanceFactor(nodeToBalance);
@@ -99,16 +104,14 @@ public class AVLTree <T extends Comparable<T>>{
         return nodeToBalance;
     }
 
-
-
     /**
      * to insert a key into the tree
      * @param node the root node
      * @param key the new key to be inserted to the tree
      * @return the root node
-     * @throws ParseException
      */
-    public Node insert(Node node, T key) throws ParseException {
+
+    public Node insert(Node node, T key) {
         if (node == null) {
             return new Node(key);
         } else if (node.key.compareTo(key)>0) {
@@ -123,12 +126,12 @@ public class AVLTree <T extends Comparable<T>>{
         return balance(node);
     }
 
-
     /**
      * to get the smallest child from the right sub-tree
      * @param node the root of the right sub-tree
      * @return the smallest child from the right sub-tree
      */
+
     private Node getSmallestChildFromTheRight(Node node) {
         Node current = node;
         while (current.left != null) {
@@ -137,13 +140,13 @@ public class AVLTree <T extends Comparable<T>>{
         return current;
     }
 
-
     /**
      * to delete a node from the tree
      * @param node the root node of the tree
      * @param key the key of the node we want to delete
      * @return the root
      */
+
     public Node delete(Node node, T key) {
         if (node == null) {
             return null;
@@ -154,13 +157,12 @@ public class AVLTree <T extends Comparable<T>>{
             //myself smaller that the key, then we need to find nodes with bigger keys so use recursion to go right
             node.right = delete(node.right, key);
         } else {
-            //found the node, now determine how many children this node has so we can find it a replacement after deletion
-
+            //found the node, now determine how many children this node has, so we can find it a replacement after deletion
             //if either left or right child is null, then this node only has one child
             if (node.left == null || node.right == null) {
                 if(node.left==null){
                     //the node does not have left child, then the replacement is the right child
-                    //right child can also be null here. That means the node has no child. The replacement is null. Still correct.
+                    //Right child can also be null here. That means the node has no child. The replacement is null. Still correct.
                     node=node.right;
                 }else{
                     //same logic as above
@@ -180,12 +182,12 @@ public class AVLTree <T extends Comparable<T>>{
         return node;
     }
 
-
     /**
      * to find a node with the given key
      * @param key the key of the node to be found
      * @return the node containing the given key
      */
+
     public Node find(T key) {
         Node current = root;
         while (current != null) {
@@ -201,11 +203,11 @@ public class AVLTree <T extends Comparable<T>>{
         return current;
     }
 
-
     /**
      * print the pre order of the tree for testing
      * @param node the root
      */
+
     public void preOrder(Node node) {
         if (node != null) {
             System.out.println(node.key + " ");
@@ -213,7 +215,6 @@ public class AVLTree <T extends Comparable<T>>{
             preOrder(node.right);
         }
     }
-
 
     public void inOrder(Node node){
         if(node!=null){
@@ -223,6 +224,4 @@ public class AVLTree <T extends Comparable<T>>{
 
         }
     }
-
-
 }

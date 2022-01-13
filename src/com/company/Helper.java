@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Helper {
 
-
     public static void readClientsFromCSV(String filePath, LinkedList<Client> list){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
@@ -25,24 +24,19 @@ public class Helper {
                 String initials=lineParts[2];
                 int addressX=Integer.parseInt(lineParts[3]);
                 int addressY=Integer.parseInt(lineParts[4]);
-
                 list.add(new Client(clientId,name,initials,addressX,addressY));
-
             }
             fileReader.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
-
     public static void readPackagesFromCSV(String filePath,LinkedList<Package> list, LinkedList<Client> clientList){
         try {
-
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
             while (fileReader.hasNext()){
-
                 String lineInFile=fileReader.nextLine();
                 String[] lineParts=lineInFile.split(";");
                 int clientId = Integer.parseInt(lineParts[6]);
@@ -59,10 +53,7 @@ public class Helper {
             }
             fileReader.close();
         } catch (FileNotFoundException|ParseException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
-
-
-
 }

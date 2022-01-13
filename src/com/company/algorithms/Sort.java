@@ -45,6 +45,12 @@ public class Sort {
         }
     }
 
+    /**
+     * Sort the objects using selection sort
+     * @param clientList to be sorted
+     * @param threshold when to stop the sorting
+     */
+
     //selection sort
     public static void selectionSort(LinkedList<Client> clientList, int threshold) {
         for (int i = 0; i < threshold; i++) {

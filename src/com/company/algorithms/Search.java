@@ -5,12 +5,18 @@ import java.util.LinkedList;
 
 public class Search <T extends Comparable<T>> {
 
-    //binary search
+    /**
+     * Search for an object using binary search
+     * @param list that the object exist in
+     * @param object to be searched for
+     * @return the object if found, otherwise return null
+     */
+
+    //binary search with generic type
     public T binarySearch(LinkedList<T> list, T object){
         int left=0;
         int right=list.size()-1;
         int middle=(left+right)/2;
-
         while ((list.get(middle).compareTo(object)!= 0 ) && (left<right)) {
             if (list.get(middle).compareTo(object) < 0) {
                 left=middle+1;
@@ -19,7 +25,6 @@ public class Search <T extends Comparable<T>> {
             }
             middle=(left+right)/2;
         }
-
         if (list.get(middle).compareTo(object) == 0) {
             //Or return the index
             return list.get(middle);
@@ -27,7 +32,4 @@ public class Search <T extends Comparable<T>> {
             return null;
         }
     }
-
-
-
 }
