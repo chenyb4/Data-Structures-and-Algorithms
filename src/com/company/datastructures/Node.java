@@ -1,9 +1,5 @@
 package com.company.datastructures;
 
-import com.company.models.Package;
-
-import java.util.ArrayList;
-
 public class Node <T extends Comparable<T>>{
 
     public T key;
@@ -14,4 +10,11 @@ public class Node <T extends Comparable<T>>{
     public Node(T key) {
         this.key = key;
     }
+
+    @Override
+    public String toString() {
+        return key.toString();
+    }
+
+
 }

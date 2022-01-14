@@ -1,6 +1,5 @@
 package com.company;
 
-import com.company.algorithms.Search;
 import com.company.datastructures.AVLTree;
 import com.company.datastructures.Node;
 import com.company.models.Client;
@@ -8,16 +7,16 @@ import com.company.models.Package;
 import java.text.ParseException;
 import java.util.LinkedList;
 
+import static com.company.UserInterface.userInterface;
+
 public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-        LinkedList<Client> clients = new LinkedList<>();
-        LinkedList<Package> packages = new LinkedList<Package>();
 
+        userInterface();
 
-        Helper.readClientsFromCSV("src/com/company/csvFiles/Clients.csv",clients);
-        Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
+//UserInterface.findTopTen();
 
 
         //try binary search
@@ -34,37 +33,25 @@ public class Main {
 
 
         //get the number of packages sent to each client
-       /*for (Package p:packages
-        ) {
-           System.out.println(p.getEntryDate());
 
-           *//* for (int i = 0 ; i < clients.size(); i++) {
-                if(p.getClient().getClientId()==clients.get(i).getClientId()){
-                    clients.get(i).setNumberOfPackagesReceived(clients.get(i).getNumberOfPackagesReceived()+1);
-                }
-            }*/
-        /*
 
-            for (int i = 0 ; i < clients.size(); i++) {
-                if(p.getClient().getId()==clients.get(i).getId()){
-                    clients.get(i).setNumberOfPackagesReceived(clients.get(i).getNumberOfPackagesReceived()+1);
-                }
-            }
 
-        }
-       */
-       AVLTree tree=new AVLTree();
+
+
+
+
+      /* AVLTree tree=new AVLTree();
         for (Package p: packages
              ) {
             tree.root=tree.insert(tree.root,p);
-        }
+        }*/
 
       //  tree.delete(tree.root,packages.get(5));
 
 
 
 
-        Node nodeToFind= tree.find(packages.get(4));
+        //Node nodeToFind= tree.find(packages.get(4));
        // System.out.println(nodeToFind.key.getId()+" is the node found");
 
         /*System.out.println("Preorder traversal" +
@@ -73,9 +60,9 @@ public class Main {
         tree.preOrder(tree.root);*/
 
 
-        System.out.println("Inorder traversal of the constructed tree is:");
+        /*System.out.println("Inorder traversal of the constructed tree is:");
         tree.inOrder(tree.root);
-
+*/
         /*
         //sort on number of packages sent to each client
 
