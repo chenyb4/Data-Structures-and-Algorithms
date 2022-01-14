@@ -24,6 +24,10 @@ public class Package implements Comparable<Package>{
         this.status=StatusType.InDistributionCenter;
     }
 
+    public Package(int id){
+        this.id=id;
+    }
+
     //Getters and Setters
     public int getId() {
         return id;
@@ -92,6 +96,6 @@ public class Package implements Comparable<Package>{
 
     @Override
     public String toString() {
-        return  id + "";
+        return this.status+"";
     }
 }

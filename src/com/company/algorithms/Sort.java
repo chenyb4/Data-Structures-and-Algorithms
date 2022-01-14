@@ -3,32 +3,33 @@ package com.company.algorithms;
 import com.company.models.Client;
 import com.company.models.Package;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class Sort {
+public class Sort <T extends Comparable<T>>{
 
     //merge sort
-    public static void mergeSort(LinkedList<Package> packages){
-        if(packages.size() <2) return;
-        int mid =packages.size()/2;
-        LinkedList<Package> left = new LinkedList<>();
-        LinkedList<Package> right = new LinkedList<>();
+    public void mergeSort(ArrayList<T> list){
+        if(list.size() <2) return;
+        int mid =list.size()/2;
+        ArrayList<T> left = new ArrayList<>();
+        ArrayList<T> right = new ArrayList<>();
         for(int i=0; i<mid; i++){
-            left.add(packages.get(i));
+            left.add(list.get(i));
         }
-        for(int i=0; i<packages.size()-mid; i++){
-            right.add(packages.get(mid+i));
+        for(int i=0; i<list.size()-mid; i++){
+            right.add(list.get(mid+i));
         }
         mergeSort(left);
         mergeSort(right);
-        merge(left, right, packages);
+        merge(left, right, list);
     }
 
     // part of the merge sort for recursion
-    private static void merge(LinkedList<Package> left, LinkedList<Package> right, LinkedList<Package> all){
+    private void merge (ArrayList<T> left, ArrayList<T> right, ArrayList<T> all){
         int i=0, j=0, k=0;
         while(i<left.size() && j< right.size()){
-            if(left.get(i).getId() < right.get(j).getId()){
+            //left.get(i).getId() < right.get(j).getId()
+            if(left.get(i).compareTo(right.get(i))<0){
                 all.set(k,left.get(i));
                 i++;
             }else{
@@ -52,7 +53,7 @@ public class Sort {
      */
 
     //selection sort
-    public static void selectionSort(LinkedList<Client> clientList, int threshold) {
+    public static void selectionSort(ArrayList<Client> clientList, int threshold) {
         for (int i = 0; i < threshold; i++) {
             int min_idx = i;
             for (int j = i + 1; j < clientList.size(); j++) {

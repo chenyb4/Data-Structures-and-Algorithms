@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.datastructures.AVLTree;
 import com.company.models.Client;
 import com.company.models.Package;
 
@@ -12,7 +13,7 @@ import java.util.*;
 
 public class Helper {
 
-    public static void readClientsFromCSV(String filePath, LinkedList<Client> list){
+    public static void readClientsFromCSV(String filePath, ArrayList<Client> list){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -32,7 +33,7 @@ public class Helper {
         }
     }
 
-    public static void readPackagesFromCSV(String filePath,LinkedList<Package> list, LinkedList<Client> clientList){
+    public static void readPackagesFromCSV(String filePath, ArrayList<Package> list, ArrayList<Client> clientList){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -46,7 +47,6 @@ public class Helper {
                 int length = Integer.parseInt(lineParts[1]);
                 int packageId = Integer.parseInt(lineParts[0]);
                 double weight = Double.parseDouble(lineParts[4]);
-                //Not sure about this
                 Date entryDate = new SimpleDateFormat("dd-MM-yyyy").parse(lineParts[5]);
                 Package tempPackage=new Package(packageId,length,breadth,height,client,entryDate,weight);
                 list.add(tempPackage);
@@ -56,4 +56,8 @@ public class Helper {
             System.err.println(e.getMessage());
         }
     }
+
+
+
+
 }
