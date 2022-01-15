@@ -3,16 +3,16 @@ package com.company.algorithms;
 import com.company.models.Client;
 import com.company.models.Package;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Sort <T extends Comparable<T>>{
 
     //merge sort
-    public void mergeSort(ArrayList<T> list){
+    public void mergeSort(LinkedList<T> list){
         if(list.size() <2) return;
         int mid =list.size()/2;
-        ArrayList<T> left = new ArrayList<>();
-        ArrayList<T> right = new ArrayList<>();
+        LinkedList<T> left = new LinkedList<>();
+        LinkedList<T> right = new LinkedList<>();
         for(int i=0; i<mid; i++){
             left.add(list.get(i));
         }
@@ -25,7 +25,7 @@ public class Sort <T extends Comparable<T>>{
     }
 
     // part of the merge sort for recursion
-    private void merge (ArrayList<T> left, ArrayList<T> right, ArrayList<T> all){
+    private void merge (LinkedList<T> left, LinkedList<T> right, LinkedList<T> all){
         int i=0, j=0, k=0;
         while(i<left.size() && j< right.size()){
             //left.get(i).getId() < right.get(j).getId()
@@ -53,7 +53,7 @@ public class Sort <T extends Comparable<T>>{
      */
 
     //selection sort
-    public static void selectionSort(ArrayList<Client> clientList, int threshold) {
+    public static void selectionSort(LinkedList<Client> clientList, int threshold) {
         for (int i = 0; i < threshold; i++) {
             int min_idx = i;
             for (int j = i + 1; j < clientList.size(); j++) {
