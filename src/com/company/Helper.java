@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Helper {
 
-    public static void readClientsFromCSV(String filePath, ArrayList<Client> list){
+    public static void readClientsFromCSV(String filePath, LinkedList<Client> list){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -25,7 +25,10 @@ public class Helper {
                 String initials=lineParts[2];
                 int addressX=Integer.parseInt(lineParts[3]);
                 int addressY=Integer.parseInt(lineParts[4]);
-                list.add(new Client(clientId,name,initials,addressX,addressY));
+                Client client = new Client(clientId,name,initials,addressX,addressY);
+                if (!list.contains(client)){
+                    list.add(client);
+                }
             }
             fileReader.close();
         } catch (FileNotFoundException e) {
@@ -33,7 +36,7 @@ public class Helper {
         }
     }
 
-    public static void readPackagesFromCSV(String filePath, ArrayList<Package> list, ArrayList<Client> clientList){
+    public static void readPackagesFromCSV(String filePath, LinkedList<Package> list, LinkedList<Client> clientList){
         try {
             Scanner fileReader=new Scanner(new File(filePath));
             fileReader.nextLine();
@@ -49,15 +52,13 @@ public class Helper {
                 double weight = Double.parseDouble(lineParts[4]);
                 Date entryDate = new SimpleDateFormat("dd-MM-yyyy").parse(lineParts[5]);
                 Package tempPackage=new Package(packageId,length,breadth,height,client,entryDate,weight);
-                list.add(tempPackage);
+                if (!list.contains(tempPackage)){
+                    list.add(tempPackage);
+                }
             }
             fileReader.close();
         } catch (FileNotFoundException|ParseException e) {
             System.err.println(e.getMessage());
         }
     }
-
-
-
-
 }

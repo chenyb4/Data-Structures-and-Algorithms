@@ -1,24 +1,14 @@
 package com.company;
 
-import com.company.datastructures.AVLTree;
-import com.company.datastructures.Node;
-import com.company.models.Client;
-import com.company.models.Package;
-import java.text.ParseException;
-import java.util.LinkedList;
-
-import static com.company.UserInterface.userInterface;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
 
+        UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
+        userInterface.startUserInterface();
 
-        userInterface();
-
-//UserInterface.findTopTen();
-
-
+        //UserInterface.findTopTen();
         //try binary search
         /*Client temp= Search.binarySearchClients(clients,235027);
 
@@ -33,12 +23,6 @@ public class Main {
 
 
         //get the number of packages sent to each client
-
-
-
-
-
-
 
       /* AVLTree tree=new AVLTree();
         for (Package p: packages

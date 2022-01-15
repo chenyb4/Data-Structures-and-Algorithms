@@ -1,6 +1,6 @@
 package com.company.models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.LinkedList;
 
 public class Client implements Comparable<Client>{
@@ -24,7 +24,7 @@ public class Client implements Comparable<Client>{
     }
 
     //static methods
-    public static Client findClientByID(ArrayList<Client> clientList, int id){
+    public static Client findClientByID(LinkedList<Client> clientList, int id){
         for (Client c:clientList
         ) {
             if(c.getId()==id){
