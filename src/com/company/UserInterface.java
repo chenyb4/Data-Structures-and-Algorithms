@@ -6,6 +6,10 @@ public class UserInterface {
 
     private UserInterfaceHandler handler;
 
+    public UserInterfaceHandler getHandler() {
+        return handler;
+    }
+
     //Constructor
     public UserInterface(UserInterfaceHandler handler) {
         this.handler = handler;

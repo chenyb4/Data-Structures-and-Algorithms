@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Client implements Comparable<Client>{
 
     //fields
-    private int id;
+    public int id;
     private String name;
     private String initials;
     private int addressX;
@@ -83,4 +83,6 @@ public class Client implements Comparable<Client>{
     public int compareTo(Client o) {
         return Integer.compare(id,o.id);
     }
+
+
 }

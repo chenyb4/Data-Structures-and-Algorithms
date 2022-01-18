@@ -2,8 +2,8 @@ package com.company;
 
 import com.company.algorithms.Search;
 import com.company.algorithms.Sort;
-import com.company.datastructures.AVLTree;
-import com.company.datastructures.Node;
+import com.company.datastructures.trees.AVLTree;
+import com.company.datastructures.trees.Node;
 import com.company.models.Client;
 import com.company.models.Package;
 
@@ -13,6 +13,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.LinkedList;
 import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 
 public class UserInterfaceHandler {
@@ -24,9 +25,15 @@ public class UserInterfaceHandler {
     public UserInterfaceHandler() {
         Helper.readClientsFromCSV("src/com/company/csvFiles/Clients.csv",clients);
         Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
+        Random rand=new Random();
+        for (int i = 0; i < 10000000; i++) {
+            packages.add(new Package(packages.getLast().getId()+1,50,30,100,clients.get(rand.nextInt(0,clients.size()-1)),new Date(),50));
+        }
+
          for (Package p: packages) {
             packageTree.root=packageTree.insert(packageTree.root,p);
         }
+        System.out.println(packages.getLast().getId());
     }
 
     //make it private later to call in UserInterface

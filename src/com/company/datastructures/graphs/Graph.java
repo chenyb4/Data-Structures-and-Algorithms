@@ -1,14 +1,72 @@
-package com.company.datastructures;
+package com.company.datastructures.graphs;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
-public class Graph <T>{
-    //todo: this code is for demonstration and it wasn't tested.
-    /*private final HashMap<T, LinkedList<T>> adjacencyList = new HashMap<>();
+public class Graph <T> {
+
+    private Map<Vertex, List<Vertex>> adjVertices=new HashMap<Vertex, List<Vertex>>();
+
+    public void addVertex(T label) {
+        adjVertices.putIfAbsent(new Vertex(label), new ArrayList<>());
+    }
+
+    public void removeVertex(T label) {
+        Vertex v = new Vertex(label);
+        adjVertices.values().stream().forEach(e -> e.remove(v));
+        adjVertices.remove(new Vertex(label));
+    }
+
+    public void addEdge(T label1, T label2) {
+        Vertex v1=null;
+        Vertex v2=null;
+
+        for (Vertex v: adjVertices.keySet()
+             ) {
+            if(v.label.equals(label1)){
+                v1=v;
+            }
+
+            if(v.label.equals(label2)){
+                v2=v;
+            }
+        }
+
+        /*Vertex v1 = new Vertex(label1);
+        Vertex v2 = new Vertex(label2);*/
+       /* List<Vertex> ver=adjVertices.get(v1);
+
+        temp.add(v2);*/
+
+
+        adjVertices.get(v1).add(v2);
+        adjVertices.get(v2).add(v1);
+
+
+    }
+
+    public void removeEdge(String label1, String label2) {
+        Vertex v1 = new Vertex(label1);
+        Vertex v2 = new Vertex(label2);
+        List<Vertex> eV1 = adjVertices.get(v1);
+        List<Vertex> eV2 = adjVertices.get(v2);
+        if (eV1 != null)
+            eV1.remove(v2);
+        if (eV2 != null)
+            eV2.remove(v1);
+    }
+
+
+
+
+    // standard constructor, getters, setters
+
+
+
+    /*//todo: this code is for demonstration and it wasn't tested.
+    private final HashMap<Vertex, List<Vertex>> adjacencyList = new HashMap<>();
 
     // This function adds a new vertex to the graph
-    public void addVertex(T s) {
+    public void addVertex(Vertex s) {
         adjacencyList.put(s, new LinkedList<T>());
     }
 

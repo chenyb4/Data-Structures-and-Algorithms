@@ -1,4 +1,4 @@
-package com.company.datastructures;
+package com.company.datastructures.trees;
 
 public class Node <T extends Comparable<T>>{
 
