@@ -91,7 +91,9 @@ public class UserInterfaceHandler {
         //todo: check this
         Instant now1 = Instant.now();
         Node<Package> resultNode=packageTree.find(temp);
-        Duration duration2 = Duration.between(now1,Instant.now());
+        Instant now2 = Instant.now();
+        Duration duration2 = Duration.between(now1,now2);
+
         if (resultNode == null) {
             System.out.println("Package not found!");
         } else {

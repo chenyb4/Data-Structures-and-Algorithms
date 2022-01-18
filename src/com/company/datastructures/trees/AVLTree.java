@@ -196,6 +196,7 @@ public class AVLTree <T extends Comparable<T>>{
             }
             if(current.key.compareTo(key)<0){
                 current=current.right;
+
             }else{
                 current=current.left;
             }
