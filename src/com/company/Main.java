@@ -1,11 +1,29 @@
 package com.company;
 
 
+import com.company.datastructures.graphs.Graph;
+import com.company.models.Client;
+
 public class Main {
 
     public static void main(String[] args) {
 
         UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
+
+        /*System.out.println("numbe rof clients:"+userInterface.getHandler().clients.size());
+
+        Graph graph = new Graph();
+
+        for (Client c: userInterface.getHandler().clients
+        ) {
+            graph.addVertex(c);
+        }
+
+        graph.addEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+
+        System.out.println(graph.toString());*/
+
+
         userInterface.startUserInterface();
 
         //UserInterface.findTopTen();
@@ -72,6 +90,23 @@ public class Main {
         ) {
             System.out.println(p.getPackageId());
         }*/
+
+
+
+
+
+          /*  graph.addVertex("Bob");
+            graph.addVertex("Alice");
+            graph.addVertex("Mark");
+            graph.addVertex("Rob");
+            graph.addVertex("Maria");
+            graph.addEdge("Bob", "Alice");
+            graph.addEdge("Bob", "Rob");
+            graph.addEdge("Alice", "Mark");
+            graph.addEdge("Rob", "Mark");
+            graph.addEdge("Alice", "Maria");
+            graph.addEdge("Rob", "Maria");*/
+
 
     }
 

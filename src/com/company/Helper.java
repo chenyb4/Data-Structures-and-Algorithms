@@ -1,6 +1,5 @@
 package com.company;
 
-import com.company.datastructures.AVLTree;
 import com.company.models.Client;
 import com.company.models.Package;
 

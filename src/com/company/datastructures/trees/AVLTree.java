@@ -1,7 +1,5 @@
-package com.company.datastructures;
+package com.company.datastructures.trees;
 //import com.company.models.T;
-
-import java.text.ParseException;
 
 public class AVLTree <T extends Comparable<T>>{
     public Node root;
@@ -191,8 +189,10 @@ public class AVLTree <T extends Comparable<T>>{
     public Node find(T key) {
         Node current = root;
         while (current != null) {
-            if (current.key == key) {
-                break;
+
+
+            if (current.key.compareTo(key)==0) {
+                return current;
             }
             if(current.key.compareTo(key)<0){
                 current=current.right;
