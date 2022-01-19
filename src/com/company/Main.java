@@ -10,7 +10,7 @@ public class Main {
 
         UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
 
-        /*System.out.println("numbe rof clients:"+userInterface.getHandler().clients.size());
+        System.out.println("numbe rof clients:"+userInterface.getHandler().clients.size());
 
         Graph graph = new Graph();
 
@@ -20,8 +20,9 @@ public class Main {
         }
 
         graph.addEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
-
-        System.out.println(graph.toString());*/
+        graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+        graph.removeVertex(userInterface.getHandler().clients.get(0));
+        System.out.println(graph.toString());
 
 
         userInterface.startUserInterface();
