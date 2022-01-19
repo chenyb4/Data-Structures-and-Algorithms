@@ -18,11 +18,30 @@ public class Main {
         ) {
             graph.addVertex(c);
         }
+        System.out.println("after adding all clients are added:");
+        System.out.println(graph);
+        System.out.println("_____________________________");
+
 
         graph.addEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
-        graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+        System.out.println("after adding an edge:");
+        System.out.println(graph);
+        System.out.println("_____________________________");
+
+       /* graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+        System.out.println("after removing an edge:");
+        System.out.println(graph);
+        System.out.println("_____________________________");*/
+
+
+
+      //  System.out.println(graph);
         graph.removeVertex(userInterface.getHandler().clients.get(0));
-        System.out.println(graph.toString());
+      //  System.out.println(graph);
+        System.out.println("after removing a vertex:");
+        System.out.println(graph);
+        System.out.println("_____________________________");
+
 
 
         userInterface.startUserInterface();

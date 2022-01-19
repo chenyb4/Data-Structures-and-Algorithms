@@ -96,6 +96,6 @@ public class Package implements Comparable<Package>{
 
     @Override
     public String toString() {
-        return this.status+"";
+        return "package with id "+this.id+" is currently "+ this.status;
     }
 }
