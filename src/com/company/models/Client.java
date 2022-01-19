@@ -84,5 +84,11 @@ public class Client implements Comparable<Client>{
         return Integer.compare(id,o.id);
     }
 
-
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

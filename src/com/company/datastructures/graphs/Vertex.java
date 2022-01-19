@@ -8,8 +8,13 @@ public class Vertex <T> {
         this.label = label;
     }
 
+    @Override
+    public String toString() {
+        return "Vertex{" +
+                "label=" + label +
+                '}'+"\n";
+    }
 
 
-
-    // equals and hashCode
+// equals and hashCode
 }

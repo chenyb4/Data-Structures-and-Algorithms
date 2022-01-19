@@ -11,9 +11,21 @@ public class Graph <T> {
     }
 
     public void removeVertex(T label) {
-        Vertex v = new Vertex(label);
-        adjVertices.values().stream().forEach(e -> e.remove(v));
-        adjVertices.remove(new Vertex(label));
+        Vertex v = null;
+        for (Vertex vertex: adjVertices.keySet()) {
+            if(vertex.label.equals(label)){
+                v=vertex;
+                break;
+            }
+        }
+
+        for (Vertex vertex: adjVertices.keySet()
+             ) {
+            adjVertices.get(vertex).remove(v);
+        }
+        //adjVertices.values().stream().forEach(e -> e.remove(v));
+
+        adjVertices.remove(v);
     }
 
     public void addEdge(T label1, T label2) {
@@ -50,8 +62,22 @@ public class Graph <T> {
         if (edgesOfV2 != null) edgesOfV2.remove(v1);
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Graph{}";
+    }*/
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Vertex v : adjVertices.keySet()) {
+            builder.append(v.toString() + ": ");
+            for (Vertex w : adjVertices.get(v)) {
+                builder.append(w.toString() + " ");
+            }
+            builder.append("\n");
+        }
+        return (builder.toString());
     }
+
 }
