@@ -2,6 +2,7 @@ package com.company.algorithms;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Search <T extends Comparable<T>> {
 
@@ -13,7 +14,7 @@ public class Search <T extends Comparable<T>> {
      */
 
     //binary search with generic type
-    public T binarySearch(LinkedList<T> list, T object){
+    public T binarySearch(List<T> list, T object){
         int left=0;
         int right=list.size()-1;
         int middle=(left+right)/2;
