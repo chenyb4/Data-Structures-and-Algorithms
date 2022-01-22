@@ -189,8 +189,6 @@ public class AVLTree <T extends Comparable<T>>{
     public Node find(T key) {
         Node current = root;
         while (current != null) {
-
-
             if (current.key.compareTo(key)==0) {
                 return current;
             }
@@ -222,7 +220,6 @@ public class AVLTree <T extends Comparable<T>>{
             inOrder(node.left);
             System.out.println(node.key+" ");
             inOrder(node.right);
-
         }
     }
 }
