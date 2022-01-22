@@ -17,14 +17,14 @@ public class UserInterfaceHandler {
 
     LinkedList<Client> clients = new LinkedList<>();
     LinkedList<Package> packages = new LinkedList<>();
-    AVLTree<Package> packageTree=new AVLTree<Package>();
+    AVLTree<Package> packageTree=new AVLTree<>();
 
     public UserInterfaceHandler() {
         //Read from the CSV file of clients
         Helper.readClientsFromCSV("src/com/company/csvFiles/Clients.csv",clients);
         //Read from the CSV file of Packages
         Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
-        assert clients.size() > 0 || packages.size() > 0 : "Clients or Packages were not loaded to the list"; //Post-cond
+        assert clients.size() > 0 && packages.size() > 0 : "Clients or Packages were not loaded to the list"; //Post-cond
         //Get random value
         Random rand=new Random();
         assert packages.size() > 0 : "Packages list is empty!"; //Pre-cond
@@ -46,19 +46,18 @@ public class UserInterfaceHandler {
         try {
             //todo: fix this
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            System.out.println("Please enter the start date: (dd), from 1 to 31 ");
-            int startDate = readInt();
-            assert startDate > 0 && startDate < 32 : "Start date should be between 1 and 31"; //Post-cond
-            System.out.println("Please enter the end date: (dd), from 1 to 31 ");
-            int endDate = readInt();
-            assert endDate > 0 && endDate < 32 : "End date should be before 1 to 31"; //Post-cond
+            System.out.println("Please enter the start date: (dd-MM-yyyy) ");
+            Date startDate = sdf.parse(readString());
+            //assert  : "Start date should be between 1 and 31"; //Post-cond
+            System.out.println("Please enter the end date: (dd-MM-yyyy) ");
+            Date endDate = sdf.parse(readString());
+            //assert endDate > 0 && endDate < 32 : "End date should be before 1 to 31"; //Post-cond
             LinkedList<Package> tempPackages=new LinkedList<>();
-            Date srtDate = sdf.parse(startDate+"-12-2021");
-            Date enDate = sdf.parse(endDate+"-12-2021");
+            //Date srtDate = sdf.parse(endDate+"-12-2021");
+            //Date enDate = sdf.parse(endDate+"-12-2021");
             for (Package p: packages) {
-                if(p.getEntryDate().after(srtDate) && p.getEntryDate().before(enDate)){
+                if(p.getEntryDate().after(startDate) && p.getEntryDate().before(endDate)){
                     tempPackages.add(p);
-                    System.out.println(p.getClient());
                 }
             }
             LinkedList<Client> tempClients = new LinkedList<>(clients);

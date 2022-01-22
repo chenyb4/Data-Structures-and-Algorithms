@@ -80,4 +80,7 @@ public class Graph <T> {
         return (builder.toString());
     }
 
+    public Map<Vertex, List<Vertex>> getAdjVertices() {
+        return adjVertices;
+    }
 }
