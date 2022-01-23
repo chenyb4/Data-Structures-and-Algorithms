@@ -20,9 +20,9 @@ public class AVLTree <T extends Comparable<T>>{
      */
 
     private int height(Node node){
-        if(node==null){
+        if (node == null) {
             return -1;
-        }else{
+        } else {
             return node.height;
         }
     }
@@ -34,9 +34,9 @@ public class AVLTree <T extends Comparable<T>>{
      */
 
     private int getBalanceFactor(Node node){
-        if(node==null){
+        if (node==null) {
             return 0;
-        }else{
+        } else {
             return height(node.right)-height(node.left);
         }
     }

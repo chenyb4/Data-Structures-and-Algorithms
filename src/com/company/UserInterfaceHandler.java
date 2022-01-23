@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.company.dijkstra.DijkstraAlgorithm;
 
@@ -33,16 +35,18 @@ public class UserInterfaceHandler {
         assert clients.size() > 0 && packages.size() > 0 : "Clients or Packages were not loaded to the list"; //Post-cond
         //Get random value
         Random rand=new Random();
-        assert packages.size() > 0 : "Packages list is empty!"; //Pre-cond
+        //assert packages.size() > 0 : "Packages list is empty!"; //Pre-cond
         for (int i = 0; i < 500000; i++) {
             packages.add(new Package(packages.get(packages.size()-1).getId()+1,50,30,100,clients.get(rand.nextInt(0,clients.size()-1)),new Date(),50));
         }
-        //assert packages.size() > 10000000 : "Random packages were not loaded correctly to the package list"; //Post-cond
+        assert packages.size() > 500000 : "Random packages were not loaded correctly to the package list"; //Post-cond
         Instant now = Instant.now();
         for (Package p: packages) {
             packageTree.root=packageTree.insert(packageTree.root,p);
         }
         Duration duration = Duration.between(now,Instant.now());
+        System.out.println("Time took to insert in AVLTree: "  +duration.toNanos() + " nano sec");
+        System.out.println("Leaf of the package tree: "+packages.get(packages.size()-1).getId());
       //  System.out.println("Time took to insert in AVLTree: "  +duration.toNanos() + " nano sec");
        // System.out.println(packages.get(packages.size()-1).getId());
     }
@@ -50,23 +54,23 @@ public class UserInterfaceHandler {
     //make it private later to call in UserInterface
     public void findTopTen()  {
         try {
-            //todo: fix this
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             System.out.println("Please enter the start date: (dd-MM-yyyy) ");
+            //If date is in wrong format than an error will be thrown
             Date startDate = sdf.parse(readString());
-            //assert  : "Start date should be between 1 and 31"; //Post-cond
             System.out.println("Please enter the end date: (dd-MM-yyyy) ");
             Date endDate = sdf.parse(readString());
-            //assert endDate > 0 && endDate < 32 : "End date should be before 1 to 31"; //Post-cond
+            //The same here
             LinkedList<Package> tempPackages=new LinkedList<>();
-            //Date srtDate = sdf.parse(endDate+"-12-2021");
-            //Date enDate = sdf.parse(endDate+"-12-2021");
             for (Package p: packages) {
                 if(p.getEntryDate().after(startDate) && p.getEntryDate().before(endDate)){
                     tempPackages.add(p);
                 }
             }
+            //assert tempPackages.size() > 0 : "Temp packages were not loaded correctly to the list in findTopTen method"; //Pre-cond
+            assert clients.size() > 0 : "Client list is empty";
             LinkedList<Client> tempClients = new LinkedList<>(clients);
+            assert tempClients.size() > 0 : "TempClient list is empty in findTopTen method";
             //find out for each client how many packages they receive
             for (Package p: tempPackages) {
                 for (Client tempClient : tempClients) {
@@ -82,6 +86,7 @@ public class UserInterfaceHandler {
                 System.out.println(tempClients.get(i).getName()+" has "+tempClients.get(i).getNumberOfPackagesReceived()+" packages.");
             }
         } catch (ParseException e) {
+            //Regex for checking date format
             System.err.println("Wrong format.");
             System.err.println(e.getMessage());
         }
@@ -90,8 +95,13 @@ public class UserInterfaceHandler {
     public void getPackageStatus(){
         System.out.println("Please enter the id of the package: ");
         int id=readInt();
+        if (!isPositiveNumber(id)){
+            System.err.println("ID should be positive number");
+            return;
+        }
         Package temp = new Package(id);
         LinkedList<Package> tempPackages=new LinkedList<>(packages);
+        assert tempPackages.size() > 0 : "Temp packages is empty in getPackageStatus method";
         binarySearch(tempPackages,temp);
         ArrayList<Package> tempPackages1 = new ArrayList<>();
         Instant now = Instant.now();
@@ -103,6 +113,11 @@ public class UserInterfaceHandler {
         //search in AVL tree
         searchAVLTree(temp);
     }
+
+    /**
+     * Search a key in the package tree
+     * @param p to be found
+     */
 
     public void searchAVLTree (Package p) {
         Instant now = Instant.now();
@@ -116,6 +131,11 @@ public class UserInterfaceHandler {
         System.out.println("The time used for searching the package in the AVL tree is: " + duration.toNanos() + " nano sec.");
     }
 
+    /**
+     * Search an element in the list using binary search
+     * @param list to be searched on
+     * @param p to be searched in the list
+     */
 
     public void binarySearch (List<Package> list,Package p) {
         Search<Package> searchPackage=new Search<>();
@@ -127,11 +147,23 @@ public class UserInterfaceHandler {
         if (resultPackage == null) {
             System.out.println("Package not found!");
         } else {
-            System.out.println(resultPackage.getId());
             System.out.println("Status: "+resultPackage.getStatus());
         }
         System.out.println("The time used for searching the package using binary search in the LinkedList is: " + duration.toNanos() + " nano sec.");
         System.out.println();
+    }
+
+    /**
+     * @param number to be checked
+     * @return true if the number is positive, other false
+     */
+
+    public static boolean isPositiveNumber(int number) {
+        //Regex for checking positive number
+        final String regEx = "^[1-9]\\d*$";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(number + "");
+        return matcher.matches();
     }
 
     //Read user input as a string
@@ -143,6 +175,7 @@ public class UserInterfaceHandler {
     public static int readInt () {
         int input = -1;
         Scanner sc = new Scanner(System.in);
+        //Regex for allowing only Integer in the console
         while (!sc.hasNextInt()) sc.next();
         input = sc.nextInt();
         return input;

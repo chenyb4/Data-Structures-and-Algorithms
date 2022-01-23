@@ -6,11 +6,23 @@ public class Graph <T> {
 
     private Map<Vertex, List<Vertex>> adjVertices=new HashMap<>();
 
+    /**
+     * Add a new vertex to the graph
+     * @param label of the object
+     */
+
     public void addVertex(T label) {
+        assert label != null : "Label cannot be null when adding a vertex"; //Pred-cond
         adjVertices.putIfAbsent(new Vertex(label), new ArrayList<>());
     }
 
+    /**
+     * Remove a vertex from the graph
+     * @param label to be removed
+     */
+
     public void removeVertex(T label) {
+        assert label != null : "Label cannot be null when removing a vertex"; //Pred-cond
         Vertex v = null;
         for (Vertex vertex: adjVertices.keySet()) {
             if(vertex.label.equals(label)){
@@ -18,17 +30,23 @@ public class Graph <T> {
                 break;
             }
         }
-
         for (Vertex vertex: adjVertices.keySet()
              ) {
             adjVertices.get(vertex).remove(v);
         }
         //adjVertices.values().stream().forEach(e -> e.remove(v));
-
         adjVertices.remove(v);
+        assert !adjVertices.containsKey(v) : "Vertex was not removed";
     }
 
+    /**
+     * Add edge to the graph between two labels
+     * @param label1 of the first edge
+     * @param label2 of the second edge
+     */
+
     public void addEdge(T label1, T label2) {
+        assert label1 != null || label2 != null : "Edges cannot be null when adding edges"; //Pre-cond
         Vertex v1=null;
         Vertex v2=null;
         for (Vertex v: adjVertices.keySet()
@@ -45,7 +63,14 @@ public class Graph <T> {
         adjVertices.get(v2).add(v1);
     }
 
+    /**
+     * Remove an edge from two object labels
+     * @param label1 of the first object
+     * @param label2 of the second object
+     */
+
     public void removeEdge(T label1, T label2) {
+        assert label1 != null || label2 != null : "Edges cannot be null when adding edges"; //Pre-cond
         Vertex v1=null;
         Vertex v2=null;
         for (Vertex v: adjVertices.keySet()) {

@@ -48,6 +48,8 @@ public class UserInterface {
         System.out.println("Please choose one of the following menu items: \n" +
                 "1) to find a package by package id. \n" +
                 "2) to find the top 10 recipients in a period. \n" +
+                "3) to find the best route for the driver to a given address. \n" +
+                "4) to calculate how many drivers needed per day\n" +
                 "3) to run the prototype of finding the shortest route using Dijkstra algorithm.  \n" +
                 "4) \n" +
                 "5) \n" +
