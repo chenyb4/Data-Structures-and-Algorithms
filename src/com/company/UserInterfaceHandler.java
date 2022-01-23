@@ -13,6 +13,12 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 
+import com.company.dijkstra.DijkstraAlgorithm;
+
+import com.company.dijkstra.Graph;
+
+
+
 public class UserInterfaceHandler {
 
     LinkedList<Client> clients = new LinkedList<>();
@@ -37,8 +43,8 @@ public class UserInterfaceHandler {
             packageTree.root=packageTree.insert(packageTree.root,p);
         }
         Duration duration = Duration.between(now,Instant.now());
-        System.out.println("Time took to insert in AVLTree: "  +duration.toNanos() + " nano sec");
-        System.out.println(packages.get(packages.size()-1).getId());
+      //  System.out.println("Time took to insert in AVLTree: "  +duration.toNanos() + " nano sec");
+       // System.out.println(packages.get(packages.size()-1).getId());
     }
 
     //make it private later to call in UserInterface
@@ -92,7 +98,7 @@ public class UserInterfaceHandler {
         for (Package p: packages) {
             tempPackages1.add(p);
         }
-        System.out.println("Time took to insert packages into ArrayList: "+Duration.between(now,Instant.now()).toNanos() +" nano sec");
+       // System.out.println("Time took to insert packages into ArrayList: "+Duration.between(now,Instant.now()).toNanos() +" nano sec");
         binarySearch(tempPackages1,temp);
         //search in AVL tree
         searchAVLTree(temp);
@@ -141,4 +147,87 @@ public class UserInterfaceHandler {
         input = sc.nextInt();
         return input;
     }
+
+    public void dijkstraPrototype(){
+       /* System.out.println("In the prototype:");
+        System.out.println("the address of the current location of the driver is: ");
+        System.out.println("the address of the next client is:");*/
+
+
+//the nodes
+        com.company.dijkstra.Node nodeDriver=new com.company.dijkstra.Node("Driver");
+        com.company.dijkstra.Node nodeB=new com.company.dijkstra.Node("B");
+        com.company.dijkstra.Node nodeC=new com.company.dijkstra.Node("C");
+        com.company.dijkstra.Node nodeD=new com.company.dijkstra.Node("D");
+        com.company.dijkstra.Node nodeE=new com.company.dijkstra.Node("E");
+        com.company.dijkstra.Node nodeG=new com.company.dijkstra.Node("G");
+        com.company.dijkstra.Node nodeNextClient=new com.company.dijkstra.Node("NextClient");
+
+        //add the weight
+        nodeDriver.addDestination(nodeB,1);
+        nodeDriver.addDestination(nodeC,4);
+        nodeB.addDestination(nodeC,2);
+        nodeB.addDestination(nodeD,3);
+        nodeB.addDestination(nodeE,10);
+        nodeD.addDestination(nodeC,6);
+        nodeD.addDestination(nodeE,5);
+        nodeD.addDestination(nodeG,1);
+        nodeC.addDestination(nodeG,3);
+        nodeE.addDestination(nodeG,2);
+        nodeE.addDestination(nodeDriver,7);
+        nodeG.addDestination(nodeDriver,5);
+
+        Graph graph=new Graph();
+
+        //add nodes to the graph
+        graph.addNode(nodeDriver);;
+        graph.addNode(nodeB);
+        graph.addNode(nodeC);
+        graph.addNode(nodeD);
+        graph.addNode(nodeE);
+        graph.addNode(nodeG);
+        graph.addNode(nodeNextClient);
+
+
+
+        graph=DijkstraAlgorithm.calculateShortestPathFromSource(graph,nodeDriver);
+
+        System.out.println(graph);
+
+
+
+
+/*        Node nodeA = new Node("A");
+        Node nodeB = new Node("B");
+        Node nodeC = new Node("C");
+        Node nodeD = new Node("D");
+        Node nodeE = new Node("E");
+        Node nodeF = new Node("F");
+
+        nodeA.addDestination(nodeB, 10);
+        nodeA.addDestination(nodeC, 15);
+
+        nodeB.addDestination(nodeD, 12);
+        nodeB.addDestination(nodeF, 15);
+
+        nodeC.addDestination(nodeE, 10);
+
+        nodeD.addDestination(nodeE, 2);
+        nodeD.addDestination(nodeF, 1);
+
+        nodeF.addDestination(nodeE, 5);
+
+        Graph graph = new Graph();
+
+        graph.addNode(nodeA);
+        graph.addNode(nodeB);
+        graph.addNode(nodeC);
+        graph.addNode(nodeD);
+        graph.addNode(nodeE);
+        graph.addNode(nodeF);
+
+        graph = Dijkstra.calculateShortestPathFromSource(graph, nodeA);*/
+
+    }
+
 }

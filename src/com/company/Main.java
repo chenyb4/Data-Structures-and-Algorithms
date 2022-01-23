@@ -3,14 +3,15 @@ package com.company;
 
 import com.company.datastructures.graphs.Graph;
 import com.company.models.Client;
+import com.company.models.UserInterface;
 
 public class Main {
 
     public static void main(String[] args) {
 
         UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
-
-        System.out.println("numbe rof clients:"+userInterface.getHandler().clients.size());
+        userInterface.startUserInterface();
+        /*System.out.println("numbe rof clients:"+userInterface.getHandler().clients.size());
 
         Graph graph = new Graph();
 
@@ -28,10 +29,10 @@ public class Main {
         System.out.println(graph);
         System.out.println("_____________________________");
 
-       /* graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+       *//* graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
         System.out.println("after removing an edge:");
         System.out.println(graph);
-        System.out.println("_____________________________");*/
+        System.out.println("_____________________________");*//*
 
 
 
@@ -43,8 +44,8 @@ public class Main {
         System.out.println("_____________________________");
 
 
+*/
 
-        userInterface.startUserInterface();
 
         //UserInterface.findTopTen();
         //try binary search
