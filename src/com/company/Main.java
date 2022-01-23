@@ -1,7 +1,5 @@
 package com.company;
 
-
-import com.company.algorithms.DepthFirstSearch;
 import com.company.datastructures.graphs.Graph;
 import com.company.datastructures.graphs.Vertex;
 import com.company.models.Client;
