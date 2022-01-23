@@ -30,8 +30,7 @@ public class UserInterface {
                 case "1" -> handler.getPackageStatus();
                 case "2" -> handler.findTopTen();
                 case "3" -> handler.dijkstraPrototype();
-                case "4" -> {}
-                case "5" -> {}
+                case "4" -> handler.primPrototype();
                 case "?" -> menuItems();
                 case "0" -> {
                     System.out.println("Goodbye!");
@@ -51,8 +50,8 @@ public class UserInterface {
                 "3) to find the best route for the driver to a given address. \n" +
                 "4) to calculate how many drivers needed per day\n" +
                 "3) to run the prototype of finding the shortest route using Dijkstra algorithm.  \n" +
-                "4) \n" +
-                "5) \n" +
+                "4) to run the prototype of finding the minimum spanning tree of addresses with Prim algorithm\n" +
+
                 "?) to see this menu again.\n" +
                 "0) to exit. \n");
     }
