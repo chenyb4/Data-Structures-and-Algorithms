@@ -6,52 +6,63 @@ import java.util.Map;
 import java.util.Set;
 
 public class DijkstraAlgorithm {
-    public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
+    public static Graph calculateShortestPathFromTheSource(Graph graph, Node source) {
 
         source.setDistance(0);
 
-        Set<Node> settledNodes = new HashSet<>();
-        Set<Node> unsettledNodes = new HashSet<>();
-        unsettledNodes.add(source);
+        //one set for visited, another for unvisited
+        Set<Node> visitedNodes = new HashSet<>();
+        Set<Node> unvisitedNodes = new HashSet<>();
 
-        while (unsettledNodes.size() != 0) {
-            Node currentNode = getLowestDistanceNode(unsettledNodes);
-            unsettledNodes.remove(currentNode);
+
+        unvisitedNodes.add(source);
+
+        //as long as there are still unvisited notes, the loop continues
+        while (unvisitedNodes.size() != 0) {
+            Node currentNode = getNearestNode(unvisitedNodes);
+            unvisitedNodes.remove(currentNode);
+
             for (Map.Entry<Node, Integer> adjacencyPair : currentNode.getAdjacentNodes().entrySet()) {
                 Node adjacentNode = adjacencyPair.getKey();
                 Integer edgeWeigh = adjacencyPair.getValue();
 
-                if (!settledNodes.contains(adjacentNode)) {
-                    CalculateMinimumDistance(adjacentNode, edgeWeigh, currentNode);
-                    unsettledNodes.add(adjacentNode);
+                //add the adjacent node
+                if (!visitedNodes.contains(adjacentNode)) {
+                    calculateShortestDistance(adjacentNode, edgeWeigh, currentNode);
+                    unvisitedNodes.add(adjacentNode);
                 }
             }
-            settledNodes.add(currentNode);
+            visitedNodes.add(currentNode);
         }
         return graph;
     }
 
-    private static void CalculateMinimumDistance(Node evaluationNode, Integer edgeWeigh, Node sourceNode) {
+    private static void calculateShortestDistance(Node candidateNode, Integer weight, Node sourceNode) {
         Integer sourceDistance = sourceNode.getDistance();
-        if (sourceDistance + edgeWeigh < evaluationNode.getDistance()) {
-            evaluationNode.setDistance(sourceDistance + edgeWeigh);
+        if ((sourceDistance + weight) < candidateNode.getDistance()) {
+            //found it and now add the distance
+            candidateNode.setDistance(sourceDistance + weight);
             LinkedList<Node> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
             shortestPath.add(sourceNode);
-            evaluationNode.setShortestPath(shortestPath);
+            candidateNode.setShortestPath(shortestPath);
         }
     }
 
-    private static Node getLowestDistanceNode(Set<Node> unsettledNodes) {
-        Node lowestDistanceNode = null;
-        int lowestDistance = Integer.MAX_VALUE;
-        for (Node node : unsettledNodes) {
+    private static Node getNearestNode(Set<Node> unvisitedNodes) {
+        Node nearestNode = null;
+        int shortestDistance = Integer.MAX_VALUE;
+
+        for (Node node : unvisitedNodes) {
+            //loop until finding the smallest distance then return the node with the shortest distance
             int nodeDistance = node.getDistance();
-            if (nodeDistance < lowestDistance) {
-                lowestDistance = nodeDistance;
-                lowestDistanceNode = node;
+
+            if (nodeDistance < shortestDistance) {
+                //the node is found
+                shortestDistance = nodeDistance;
+                nearestNode = node;
             }
         }
-        return lowestDistanceNode;
+        return nearestNode;
     }
 }
 

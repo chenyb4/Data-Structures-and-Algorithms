@@ -16,7 +16,7 @@ import java.util.*;
 import com.company.dijkstra.DijkstraAlgorithm;
 
 import com.company.dijkstra.Graph;
-
+import com.company.prim.MinimumSpanningTree;
 
 
 public class UserInterfaceHandler {
@@ -149,12 +149,7 @@ public class UserInterfaceHandler {
     }
 
     public void dijkstraPrototype(){
-       /* System.out.println("In the prototype:");
-        System.out.println("the address of the current location of the driver is: ");
-        System.out.println("the address of the next client is:");*/
-
-
-//the nodes
+      //the nodes
         com.company.dijkstra.Node nodeDriver=new com.company.dijkstra.Node("Driver");
         com.company.dijkstra.Node nodeB=new com.company.dijkstra.Node("B");
         com.company.dijkstra.Node nodeC=new com.company.dijkstra.Node("C");
@@ -190,44 +185,23 @@ public class UserInterfaceHandler {
 
 
 
-        graph=DijkstraAlgorithm.calculateShortestPathFromSource(graph,nodeDriver);
+        graph=DijkstraAlgorithm.calculateShortestPathFromTheSource(graph,nodeDriver);
 
         System.out.println(graph);
 
+    }
 
 
+    public void primPrototype(){
+        MinimumSpanningTree tree = new MinimumSpanningTree();
+        int graph[][] = new int[][] { { 1, 4, 5, 11, 0 },
+                { 4, 0, 4, 14, 9 },
+                { 0, 5, 0, 1, 9 },
+                { 5, 7, 2, 0, 13 },
+                { 0, 8, 9, 3, 2 } };
 
-/*        Node nodeA = new Node("A");
-        Node nodeB = new Node("B");
-        Node nodeC = new Node("C");
-        Node nodeD = new Node("D");
-        Node nodeE = new Node("E");
-        Node nodeF = new Node("F");
-
-        nodeA.addDestination(nodeB, 10);
-        nodeA.addDestination(nodeC, 15);
-
-        nodeB.addDestination(nodeD, 12);
-        nodeB.addDestination(nodeF, 15);
-
-        nodeC.addDestination(nodeE, 10);
-
-        nodeD.addDestination(nodeE, 2);
-        nodeD.addDestination(nodeF, 1);
-
-        nodeF.addDestination(nodeE, 5);
-
-        Graph graph = new Graph();
-
-        graph.addNode(nodeA);
-        graph.addNode(nodeB);
-        graph.addNode(nodeC);
-        graph.addNode(nodeD);
-        graph.addNode(nodeE);
-        graph.addNode(nodeF);
-
-        graph = Dijkstra.calculateShortestPathFromSource(graph, nodeA);*/
-
+        // Print the solution
+        tree.primMinimumSpanningTree(graph);
     }
 
 }
