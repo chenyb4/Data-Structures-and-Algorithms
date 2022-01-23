@@ -1,50 +1,57 @@
 package com.company;
 
 
+import com.company.algorithms.DepthFirstSearch;
 import com.company.datastructures.graphs.Graph;
+import com.company.datastructures.graphs.Vertex;
 import com.company.models.Client;
+import com.company.models.UserInterface;
+
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
 
         UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
+        userInterface.startUserInterface();
 
-        System.out.println("numbe rof clients:"+userInterface.getHandler().clients.size());
+        System.out.println("number of clients:"+userInterface.getHandler().clients.size());
 
         Graph graph = new Graph();
-
+        Vertex vertex = null;
         for (Client c: userInterface.getHandler().clients
         ) {
             graph.addVertex(c);
+            if (vertex == null){
+                vertex = new Vertex<>(c);
+            }
         }
+        /*graph.getAdjVertices().putIfAbsent(vertex,new ArrayList<>());
         System.out.println("after adding all clients are added:");
         System.out.println(graph);
-        System.out.println("_____________________________");
+        System.out.println("_____________________________");*/
 
-
-        graph.addEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+        /*graph.addEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
         System.out.println("after adding an edge:");
         System.out.println(graph);
-        System.out.println("_____________________________");
-
-       /* graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
+        System.out.println("_____________________________");*/
+        //DepthFirstSearch<Client> dfs = new DepthFirstSearch<>();
+        //dfs.traverse(graph,vertex);
+        //dfs.traverseRecursively(graph,vertex);
+        /*graph.removeEdge(userInterface.getHandler().clients.get(0),userInterface.getHandler().clients.get(10));
         System.out.println("after removing an edge:");
         System.out.println(graph);
         System.out.println("_____________________________");*/
 
 
 
-      //  System.out.println(graph);
+        /*System.out.println(graph);
         graph.removeVertex(userInterface.getHandler().clients.get(0));
-      //  System.out.println(graph);
+        System.out.println(graph);
         System.out.println("after removing a vertex:");
         System.out.println(graph);
-        System.out.println("_____________________________");
-
-
-
-        userInterface.startUserInterface();
+        System.out.println("_____________________________");*/
 
         //UserInterface.findTopTen();
         //try binary search

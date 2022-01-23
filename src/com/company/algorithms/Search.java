@@ -15,6 +15,7 @@ public class Search <T extends Comparable<T>> {
 
     //binary search with generic type
     public T binarySearch(List<T> list, T object){
+        assert object != null : "Object cannot be null in binary search";
         int left=0;
         int right=list.size()-1;
         int middle=(left+right)/2;

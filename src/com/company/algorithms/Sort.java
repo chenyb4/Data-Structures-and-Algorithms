@@ -54,6 +54,7 @@ public class Sort <T extends Comparable<T>>{
 
     //selection sort
     public static void selectionSort(LinkedList<Client> clientList, int threshold) {
+        assert threshold > 0 : "Threshold should be higher than 0";
         for (int i = 0; i < threshold; i++) {
             int min_idx = i;
             for (int j = i + 1; j < clientList.size(); j++) {
