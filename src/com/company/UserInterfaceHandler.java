@@ -279,4 +279,24 @@ public class UserInterfaceHandler {
         tree.primMinimumSpanningTree(graph);
     }
 
+    public void graphPrototype () {
+        com.company.datastructures.graphs.Graph<Client> graph = new com.company.datastructures.graphs.Graph<>();
+        // Add vertices
+        for (int i = 0; i < 10; i++) {
+            graph.addVertex(clients.get(i));
+        }
+
+        // Add edge between client 8 and 9
+        System.out.println("Before adding an Edge");
+        System.out.println(graph);
+        graph.addEdge(clients.get(8),clients.get(9));
+        System.out.println("After adding an Edge between client 8 and 9");
+        System.out.println(graph);
+
+        System.out.println("Removing the first vertex");
+        graph.removeVertex(clients.get(0));
+        System.out.println(graph);
+        System.out.println("Vertex removed");
+    }
+
 }

@@ -6,15 +6,22 @@ import java.util.Map;
 import java.util.Set;
 
 public class DijkstraAlgorithm {
-    public static Graph calculateShortestPathFromTheSource(Graph graph, Node source) {
 
+    /**
+     * Calculate the shortest path from the root
+     * @param graph to be used
+     * @param source of the graph which is the node
+     * @return the created graph
+     */
+
+    public static Graph calculateShortestPathFromTheSource(Graph graph, Node source) {
         source.setDistance(0);
 
         //one set for visited, another for unvisited
         Set<Node> visitedNodes = new HashSet<>();
         Set<Node> unvisitedNodes = new HashSet<>();
 
-
+        // Add to teh unvisited nodes
         unvisitedNodes.add(source);
 
         //as long as there are still unvisited notes, the loop continues
@@ -37,6 +44,13 @@ public class DijkstraAlgorithm {
         return graph;
     }
 
+    /**
+     * Calculate the shortest path to a node
+     * @param candidateNode the next node
+     * @param weight of the node
+     * @param sourceNode the node where it came from
+     */
+
     private static void calculateShortestDistance(Node candidateNode, Integer weight, Node sourceNode) {
         Integer sourceDistance = sourceNode.getDistance();
         if ((sourceDistance + weight) < candidateNode.getDistance()) {
@@ -47,6 +61,12 @@ public class DijkstraAlgorithm {
             candidateNode.setShortestPath(shortestPath);
         }
     }
+
+    /**
+     * Get the nearest node by providing a set of nodes
+     * @param unvisitedNodes nodes that are unvisited
+     * @return the nearest node
+     */
 
     private static Node getNearestNode(Set<Node> unvisitedNodes) {
         Node nearestNode = null;
