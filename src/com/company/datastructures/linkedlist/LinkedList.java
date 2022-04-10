@@ -42,6 +42,7 @@ public class LinkedList<T> {
     public void addLast(T data) {
         if (tail == null) {
             addFirst(data);
+            size++;
             return;
         }
 
@@ -82,11 +83,13 @@ public class LinkedList<T> {
 
         if (index == 0) {
             addFirst(data);
+            size++;
             return;
         }
 
         if (index == size) {
             addLast(data);
+            size++;
             return;
         }
 
