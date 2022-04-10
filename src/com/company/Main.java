@@ -9,11 +9,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList<Integer> list = new LinkedList<>();
+        /*LinkedList<Integer> list = new LinkedList<>();
+
+        if(!list.contains(0)){
+            list.add(0);
+            list.add(2);
+        }
+
+        System.out.println(
+                "adding the 0 for the first time"+list
+        );
+        if(!list.contains(5)){
+            list.add(3);
+        }
+        System.out.println("adding the 0 for the second time:"+list);*/
 
        // System.out.println(list);
 
-        System.out.println("before creating the user interface");
+        /*System.out.println("before creating the user interface");
 
         UserInterfaceHandler temp=new UserInterfaceHandler();
 
@@ -23,16 +36,23 @@ public class Main {
 
         System.out.println("after instantiation of the user interface");
 
-        hah.startUserInterface();
+        for (int i = 0; i < hah.getHandler().packages.size(); i++){
+            System.out.println(hah.getHandler().packages.get(i));
+        }*/
 
-        System.out.println("after calling the start user interface method");
+
+        //hah.startUserInterface();
+
+    /*    System.out.println("after calling the start user interface method");
 
 
 
         System.out.println("number of clients:"+hah.getHandler().clients.size());
 
 
-        System.out.println("package size: "+ hah.getHandler().packages.size());
+        System.out.println("package size: "+ hah.getHandler().packages.size());*/
+
+
 
       /*  list.add(4);
         list.add(5);

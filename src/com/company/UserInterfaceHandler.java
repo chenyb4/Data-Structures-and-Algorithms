@@ -35,17 +35,24 @@ public class UserInterfaceHandler {
         //Read from the CSV file of Packages
         Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
         assert clients.size() > 0 && packages.size() > 0 : "Clients or Packages were not loaded to the list"; //Post-cond
+
+
+
         //Get random value
-        Random rand=new Random();
+       /* Random rand=new Random();
         //assert packages.size() > 0 : "Packages list is empty!"; //Pre-cond
         for (int i = 0; i < 500000; i++) {
             packages.add(new Package(packages.get(packages.size()-1).getId()+1,50,30,100,clients.get(rand.nextInt(0,clients.size()-1)),new Date(),50));
         }
         assert packages.size() > 500000 : "Random packages were not loaded correctly to the package list"; //Post-cond
+        */
+
         Instant now = Instant.now();
         for (int i = 0; i <packages.size(); i++) {
             packageTree.root=packageTree.insert(packageTree.root,packages.get(i));
         }
+
+
 
         Duration duration = Duration.between(now,Instant.now());
         System.out.println("Time took to insert in AVLTree: "  +duration.toNanos() + " nano sec");
