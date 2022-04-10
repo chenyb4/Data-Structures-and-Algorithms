@@ -4,7 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Graph {
+    // Set of nodes
     private Set<Node> nodes = new HashSet<>();
+
+    /**
+     * Add node to the set
+     * @param nodeA to be added
+     */
 
     public void addNode(Node nodeA) {
         nodes.add(nodeA);

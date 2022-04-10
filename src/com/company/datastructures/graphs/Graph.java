@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Graph <T> {
 
-    private Map<Vertex, List<Vertex>> adjVertices=new HashMap<>();
+    private final Map<Vertex<T>, List<Vertex<T>>> adjVertices=new HashMap<>();
 
     /**
      * Add a new vertex to the graph
@@ -12,8 +12,10 @@ public class Graph <T> {
      */
 
     public void addVertex(T label) {
+
+        // Add new Vertex
         assert label != null : "Label cannot be null when adding a vertex"; //Pred-cond
-        adjVertices.putIfAbsent(new Vertex(label), new ArrayList<>());
+        adjVertices.putIfAbsent(new Vertex<T>(label), new ArrayList<>());
     }
 
     /**
@@ -23,14 +25,14 @@ public class Graph <T> {
 
     public void removeVertex(T label) {
         assert label != null : "Label cannot be null when removing a vertex"; //Pred-cond
-        Vertex v = null;
-        for (Vertex vertex: adjVertices.keySet()) {
+        Vertex<T> v = null;
+        for (Vertex<T> vertex: adjVertices.keySet()) {
             if(vertex.label.equals(label)){
                 v=vertex;
                 break;
             }
         }
-        for (Vertex vertex: adjVertices.keySet()
+        for (Vertex<T> vertex: adjVertices.keySet()
              ) {
             adjVertices.get(vertex).remove(v);
         }
@@ -47,9 +49,9 @@ public class Graph <T> {
 
     public void addEdge(T label1, T label2) {
         assert label1 != null || label2 != null : "Edges cannot be null when adding edges"; //Pre-cond
-        Vertex v1=null;
-        Vertex v2=null;
-        for (Vertex v: adjVertices.keySet()
+        Vertex<T> v1=null;
+        Vertex<T> v2=null;
+        for (Vertex<T> v: adjVertices.keySet()
              ) {
             if(v.label.equals(label1)){
                 v1=v;
@@ -71,9 +73,9 @@ public class Graph <T> {
 
     public void removeEdge(T label1, T label2) {
         assert label1 != null || label2 != null : "Edges cannot be null when adding edges"; //Pre-cond
-        Vertex v1=null;
-        Vertex v2=null;
-        for (Vertex v: adjVertices.keySet()) {
+        Vertex<T> v1=null;
+        Vertex<T> v2=null;
+        for (Vertex<T> v: adjVertices.keySet()) {
             if(v.label.equals(label1)){
                 v1=v;
             }
@@ -81,23 +83,19 @@ public class Graph <T> {
                 v2=v;
             }
         }
-        List<Vertex> edgesOfV1 = adjVertices.get(v1);
-        List<Vertex> edgesOfV2 = adjVertices.get(v2);
+        List<Vertex<T>> edgesOfV1 = adjVertices.get(v1);
+        List<Vertex<T>> edgesOfV2 = adjVertices.get(v2);
         if (edgesOfV1 != null) edgesOfV1.remove(v2);
         if (edgesOfV2 != null) edgesOfV2.remove(v1);
     }
 
-    /*@Override
-    public String toString() {
-        return "Graph{}";
-    }*/
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (Vertex v : adjVertices.keySet()) {
+        for (Vertex<T> v : adjVertices.keySet()) {
             builder.append(v.toString() + ": ");
-            for (Vertex w : adjVertices.get(v)) {
+            for (Vertex<T> w : adjVertices.get(v)) {
                 builder.append(w.toString() + " ");
             }
             builder.append("\n");
@@ -105,7 +103,7 @@ public class Graph <T> {
         return (builder.toString());
     }
 
-    public Map<Vertex, List<Vertex>> getAdjVertices() {
+    public Map<Vertex<T>, List<Vertex<T>>> getAdjVertices() {
         return adjVertices;
     }
 }

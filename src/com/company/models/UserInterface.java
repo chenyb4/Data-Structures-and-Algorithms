@@ -31,6 +31,7 @@ public class UserInterface {
                 case "2" -> handler.findTopTen();
                 case "3" -> handler.dijkstraPrototype();
                 case "4" -> handler.primPrototype();
+                case "5" -> handler.graphPrototype();
                 case "?" -> menuItems();
                 case "0" -> {
                     System.out.println("Goodbye!");
@@ -49,6 +50,7 @@ public class UserInterface {
                 "2) to find the top 10 recipients in a period. \n" +
                 "3) to run the prototype of finding the shortest route using Dijkstra algorithm.  \n" +
                 "4) to run the prototype of finding the minimum spanning tree of addresses with Prim algorithm\n" +
+                "5) ro run the prototype of find the shortest route using graph\n"+
                 "?) to see this menu again.\n" +
                 "0) to exit. \n");
     }
