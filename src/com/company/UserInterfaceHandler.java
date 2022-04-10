@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.algorithms.Search;
 import com.company.algorithms.Sort;
+import com.company.datastructures.linkedlist.LinkedList;
 import com.company.datastructures.trees.AVLTree;
 import com.company.datastructures.trees.Node;
 import com.company.models.Client;
@@ -11,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,9 +43,10 @@ public class UserInterfaceHandler {
         }
         assert packages.size() > 500000 : "Random packages were not loaded correctly to the package list"; //Post-cond
         Instant now = Instant.now();
-        for (Package p: packages) {
-            packageTree.root=packageTree.insert(packageTree.root,p);
+        for (int i = 0; i <packages.size(); i++) {
+            packageTree.root=packageTree.insert(packageTree.root,packages.get(i));
         }
+
         Duration duration = Duration.between(now,Instant.now());
         System.out.println("Time took to insert in AVLTree: "  +duration.toNanos() + " nano sec");
         System.out.println("Leaf of the package tree: "+packages.get(packages.size()-1).getId());
@@ -62,23 +65,32 @@ public class UserInterfaceHandler {
             Date endDate = sdf.parse(readString());
             //The same here
             LinkedList<Package> tempPackages=new LinkedList<>();
-            for (Package p: packages) {
-                if(p.getEntryDate().after(startDate) && p.getEntryDate().before(endDate)){
-                    tempPackages.add(p);
+
+            for (int i = 0; i <packages.size(); i++) {
+                if(packages.get(i).getEntryDate().after(startDate) && packages.get(i).getEntryDate().before(endDate)){
+                    tempPackages.add(packages.get(i));
                 }
             }
+
+
             //assert tempPackages.size() > 0 : "Temp packages were not loaded correctly to the list in findTopTen method"; //Pre-cond
             assert clients.size() > 0 : "Client list is empty";
-            LinkedList<Client> tempClients = new LinkedList<>(clients);
+            LinkedList<Client> tempClients = new LinkedList<>();
+            //copying one list to another
+            for (int i = 0; i < tempClients.size(); i++) {
+                tempClients.add(clients.get(i));
+            }
             assert tempClients.size() > 0 : "TempClient list is empty in findTopTen method";
             //find out for each client how many packages they receive
-            for (Package p: tempPackages) {
-                for (Client tempClient : tempClients) {
-                    if (p.getClient().getId() == tempClient.getId()) {
-                        tempClient.setNumberOfPackagesReceived(tempClient.getNumberOfPackagesReceived() + 1);
+
+            for (int i = 0; i <tempPackages.size(); i++) {
+                for (int j = 0; j < tempClients.size(); j++) {
+                    if (tempPackages.get(i).getClient().getId() == tempClients.get(j).getId()) {
+                        tempClients.get(j).setNumberOfPackagesReceived(tempClients.get(j).getNumberOfPackagesReceived() + 1);
                     }
                 }
             }
+
             //sort top 10
             Sort.selectionSort(tempClients,10);
             System.out.println("The top 10 recipients are: ");
@@ -100,14 +112,18 @@ public class UserInterfaceHandler {
             return;
         }
         Package temp = new Package(id);
-        LinkedList<Package> tempPackages=new LinkedList<>(packages);
+        LinkedList<Package> tempPackages=new LinkedList<>();
+        for (int i = 0; i <tempPackages.size(); i++) {
+            tempPackages.add(packages.get(i));
+        }
         assert tempPackages.size() > 0 : "Temp packages is empty in getPackageStatus method";
         binarySearch(tempPackages,temp);
         ArrayList<Package> tempPackages1 = new ArrayList<>();
         Instant now = Instant.now();
-        for (Package p: packages) {
-            tempPackages1.add(p);
+        for (int i = 0; i < packages.size(); i++) {
+            tempPackages1.add(packages.get(i));
         }
+
        // System.out.println("Time took to insert packages into ArrayList: "+Duration.between(now,Instant.now()).toNanos() +" nano sec");
         binarySearch(tempPackages1,temp);
         //search in AVL tree
@@ -137,7 +153,25 @@ public class UserInterfaceHandler {
      * @param p to be searched in the list
      */
 
-    public void binarySearch (List<Package> list,Package p) {
+    public void binarySearch (com.company.datastructures.linkedlist.LinkedList<Package> list, Package p) {
+        Search<Package> searchPackage=new Search<>();
+        //To measure the time to execute the binary search
+        Instant now = Instant.now();
+        //binary search in LinkedList
+        Package resultPackage= searchPackage.binarySearch(list,p);
+        Duration duration = Duration.between(now, Instant.now());
+        if (resultPackage == null) {
+            System.out.println("Package not found!");
+        } else {
+            System.out.println("Status: "+resultPackage.getStatus());
+        }
+        System.out.println("The time used for searching the package using binary search in the LinkedList is: " + duration.toNanos() + " nano sec.");
+        System.out.println();
+    }
+
+
+
+    public void binarySearch (List<Package> list, Package p) {
         Search<Package> searchPackage=new Search<>();
         //To measure the time to execute the binary search
         Instant now = Instant.now();

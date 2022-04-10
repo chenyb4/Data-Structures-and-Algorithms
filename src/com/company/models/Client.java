@@ -1,7 +1,7 @@
 package com.company.models;
 
-import java.util.LinkedList;
-import java.util.LinkedList;
+
+import com.company.datastructures.linkedlist.LinkedList;
 
 public class Client implements Comparable<Client>{
 
@@ -25,12 +25,14 @@ public class Client implements Comparable<Client>{
 
     //static methods
     public static Client findClientByID(LinkedList<Client> clientList, int id){
-        for (Client c:clientList
-        ) {
-            if(c.getId()==id){
-                return c;
+
+        for (int i = 0; i < clientList.size(); i++) {
+            if(clientList.get(i).id==id)
+            {
+                return clientList.get(i);
             }
         }
+
         return null;
     }
 

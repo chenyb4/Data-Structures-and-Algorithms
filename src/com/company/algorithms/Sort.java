@@ -1,9 +1,10 @@
 package com.company.algorithms;
 
+import com.company.datastructures.linkedlist.LinkedList;
 import com.company.models.Client;
 import com.company.models.Package;
 
-import java.util.LinkedList;
+
 
 public class Sort <T extends Comparable<T>>{
 

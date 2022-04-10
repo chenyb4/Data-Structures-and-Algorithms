@@ -1,6 +1,9 @@
 package com.company;
 
 import com.company.datastructures.linkedlist.LinkedList;
+import com.company.models.UserInterface;
+
+import javax.swing.plaf.IconUIResource;
 
 public class Main {
 
@@ -10,7 +13,28 @@ public class Main {
 
        // System.out.println(list);
 
-        list.add(4);
+        System.out.println("before creating the user interface");
+
+        UserInterfaceHandler temp=new UserInterfaceHandler();
+
+        System.out.println("after creting object for userinterface handler");
+
+        UserInterface hah= new UserInterface(temp);
+
+        System.out.println("after instantiation of the user interface");
+
+        hah.startUserInterface();
+
+        System.out.println("after calling the start user interface method");
+
+
+
+        System.out.println("number of clients:"+hah.getHandler().clients.size());
+
+
+        System.out.println("package size: "+ hah.getHandler().packages.size());
+
+      /*  list.add(4);
         list.add(5);
         list.add(6);
 
@@ -18,7 +42,7 @@ public class Main {
         System.out.println(list.size());
 
         list.set(1,0);
-        System.out.println(list);
+        System.out.println(list);*/
 
 
 
