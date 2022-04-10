@@ -8,7 +8,19 @@ public class Main {
 
         LinkedList<Integer> list = new LinkedList<>();
 
+       // System.out.println(list);
+
+        list.add(4);
+        list.add(5);
+        list.add(6);
+
         System.out.println(list);
+        System.out.println(list.size());
+
+        list.set(1,0);
+        System.out.println(list);
+
+
 
         /*UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
         userInterface.startUserInterface();

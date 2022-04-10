@@ -65,6 +65,7 @@ public class LinkedList<T> {
             }
             n.next =  node;
         }
+        size++;
     }
 
     /**
@@ -95,6 +96,34 @@ public class LinkedList<T> {
 
         size++;
     }
+
+
+    // 0, 1, 2, 3, 4 ,5
+
+    //index 5
+
+    public void set(int index, T data){
+        if(size>index)
+        {
+            Node<T> temp=head;
+            for (int i = 0; i < index; i++) {
+                temp=temp.next;
+            }
+
+            temp.data=data;
+
+        }else
+        {
+            throw new LinkedListException("index out of bound.");
+        }
+    }
+
+   /* public Node<T> findNext(Node<T> node){
+        return node.next;
+    }
+    */
+
+
 
     /**
      * Remove last item on the list
@@ -133,6 +162,8 @@ public class LinkedList<T> {
 
         return data;
     }
+
+
 
    /* public Node<T> find(T data) {
         Node<T> node = head;
