@@ -1,19 +1,19 @@
 package com.company;
 
-import com.company.datastructures.graphs.Graph;
-import com.company.datastructures.graphs.Vertex;
-import com.company.models.Client;
-import com.company.models.UserInterface;
-import java.util.ArrayList;
+import com.company.datastructures.linkedlist.LinkedList;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
+        LinkedList<Integer> list = new LinkedList<>();
+
+        System.out.println(list);
+
+        /*UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
         userInterface.startUserInterface();
 
-        System.out.println("number of clients:"+userInterface.getHandler().clients.size());
+        System.out.println("number of clients:"+userInterface.getHandler().clients.size());*/
         /*
         Graph graph = new Graph();
         Vertex vertex = null;

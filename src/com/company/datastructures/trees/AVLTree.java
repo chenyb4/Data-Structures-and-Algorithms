@@ -2,7 +2,7 @@ package com.company.datastructures.trees;
 //import com.company.models.T;
 
 public class AVLTree <T extends Comparable<T>>{
-    public Node root;
+    public Node<T> root;
 
     /**
      *  to update the height of a node
