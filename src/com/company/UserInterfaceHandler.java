@@ -34,6 +34,7 @@ public class UserInterfaceHandler {
         Helper.readClientsFromCSV("src/com/company/csvFiles/Clients.csv",clients);
         //Read from the CSV file of Packages
         Helper.readPackagesFromCSV("src/com/company/csvFiles/Packages.csv",packages,clients);
+        //System.out.println("packages size:"+packages.size());
         assert clients.size() > 0 && packages.size() > 0 : "Clients or Packages were not loaded to the list"; //Post-cond
 
 
@@ -84,7 +85,7 @@ public class UserInterfaceHandler {
             assert clients.size() > 0 : "Client list is empty";
             LinkedList<Client> tempClients = new LinkedList<>();
             //copying one list to another
-            for (int i = 0; i < tempClients.size(); i++) {
+            for (int i = 0; i < clients.size(); i++) {
                 tempClients.add(clients.get(i));
             }
             assert tempClients.size() > 0 : "TempClient list is empty in findTopTen method";
@@ -120,7 +121,7 @@ public class UserInterfaceHandler {
         }
         Package temp = new Package(id);
         LinkedList<Package> tempPackages=new LinkedList<>();
-        for (int i = 0; i <tempPackages.size(); i++) {
+        for (int i = 0; i <packages.size(); i++) {
             tempPackages.add(packages.get(i));
         }
         assert tempPackages.size() > 0 : "Temp packages is empty in getPackageStatus method";
@@ -160,7 +161,7 @@ public class UserInterfaceHandler {
      * @param p to be searched in the list
      */
 
-    public void binarySearch (com.company.datastructures.linkedlist.LinkedList<Package> list, Package p) {
+    public void binarySearch (LinkedList<Package> list, Package p) {
         Search<Package> searchPackage=new Search<>();
         //To measure the time to execute the binary search
         Instant now = Instant.now();
@@ -190,7 +191,7 @@ public class UserInterfaceHandler {
         } else {
             System.out.println("Status: "+resultPackage.getStatus());
         }
-        System.out.println("The time used for searching the package using binary search in the LinkedList is: " + duration.toNanos() + " nano sec.");
+        System.out.println("The time used for searching the package using binary search in the ArrayList is: " + duration.toNanos() + " nano sec.");
         System.out.println();
     }
 
