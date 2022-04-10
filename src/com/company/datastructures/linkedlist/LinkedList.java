@@ -2,6 +2,10 @@ package com.company.datastructures.linkedlist;
 
 import com.company.datastructures.linkedlist.exception.LinkedListException;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 public class LinkedList<T> {
 
     // Attributes
@@ -65,6 +69,7 @@ public class LinkedList<T> {
             }
             n.next =  node;
         }
+        size++;
     }
 
     /**
@@ -96,6 +101,37 @@ public class LinkedList<T> {
         size++;
     }
 
+
+    /**
+     *
+     * @param index the index of the element that we want to update the data
+     * @param data the new object we want to set for the node in the given index
+     */
+    public void set(int index, T data){
+        if(size>index)
+        {
+            Node<T> temp=head;
+            for (int i = 0; i < index; i++) {
+                temp=temp.next;
+            }
+
+            temp.data=data;
+
+        }else
+        {
+            throw new LinkedListException("index out of bound.");
+        }
+    }
+
+
+
+   /* public Node<T> findNext(Node<T> node){
+        return node.next;
+    }
+    */
+
+
+
     /**
      * Remove last item on the list
      * @return data
@@ -104,7 +140,7 @@ public class LinkedList<T> {
     public T removeLast() {
         if (size <= 1) return removeFirst();
 
-        Node<T> secondLast = get(size - 2);
+        Node<T> secondLast = getNode(size - 2);
         T data = tail.data;
         tail = secondLast;
         tail.next = null;
@@ -125,7 +161,7 @@ public class LinkedList<T> {
 
         if (index == size - 1) return removeLast();
 
-        Node<T> previous = get(index - 1);
+        Node<T> previous = getNode(index - 1);
         T data = previous.next.data;
 
         previous.next = previous.next.next;
@@ -133,6 +169,8 @@ public class LinkedList<T> {
 
         return data;
     }
+
+
 
    /* public Node<T> find(T data) {
         Node<T> node = head;
@@ -153,7 +191,7 @@ public class LinkedList<T> {
      * @return node
      */
 
-    public Node<T> get(int index) {
+    public Node<T> getNode(int index) {
         Node<T> node = head;
 
         if (index >= size) {
@@ -166,6 +204,25 @@ public class LinkedList<T> {
 
         return node;
 
+    }
+
+    /**
+     *
+     * @param index the index for the element you want to get
+     * @return the object in the node
+     */
+    public T get(int index){
+        Node<T> node = head;
+
+        if (index >= size) {
+            throw new LinkedListException("Incorrect index");
+        }
+
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+
+        return node.data;
     }
 
     /**
@@ -202,8 +259,28 @@ public class LinkedList<T> {
         return temp;
     }
 
+    /**
+     *
+     * @param data the object to check if it exists in the linked list
+     * @return {true} if the linked list contains the object
+     */
+    public boolean contains(T data){
+
+        for (int i = 0; i < size; i++) {
+            if(this.get(i).equals(data)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
     // List size
     public int size() {
         return size;
     }
+
+
 }

@@ -1,14 +1,70 @@
 package com.company;
 
 import com.company.datastructures.linkedlist.LinkedList;
+import com.company.models.UserInterface;
+
+import javax.swing.plaf.IconUIResource;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList<Integer> list = new LinkedList<>();
+        /*LinkedList<Integer> list = new LinkedList<>();
+
+        if(!list.contains(0)){
+            list.add(0);
+            list.add(2);
+        }
+
+        System.out.println(
+                "adding the 0 for the first time"+list
+        );
+        if(!list.contains(5)){
+            list.add(3);
+        }
+        System.out.println("adding the 0 for the second time:"+list);*/
+
+       // System.out.println(list);
+
+        /*System.out.println("before creating the user interface");
+
+        UserInterfaceHandler temp=new UserInterfaceHandler();
+
+        System.out.println("after creting object for userinterface handler");
+
+        UserInterface hah= new UserInterface(temp);
+
+        System.out.println("after instantiation of the user interface");
+
+        for (int i = 0; i < hah.getHandler().packages.size(); i++){
+            System.out.println(hah.getHandler().packages.get(i));
+        }*/
+
+
+        //hah.startUserInterface();
+
+    /*    System.out.println("after calling the start user interface method");
+
+
+
+        System.out.println("number of clients:"+hah.getHandler().clients.size());
+
+
+        System.out.println("package size: "+ hah.getHandler().packages.size());*/
+
+
+
+      /*  list.add(4);
+        list.add(5);
+        list.add(6);
 
         System.out.println(list);
+        System.out.println(list.size());
+
+        list.set(1,0);
+        System.out.println(list);*/
+
+
 
         /*UserInterface userInterface = new UserInterface(new UserInterfaceHandler());
         userInterface.startUserInterface();
